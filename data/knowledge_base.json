@@ -3394,6 +3394,215 @@
       "correct_option_id": "ecbb7417-0265-4874-9ac3-42b48f283ac6",
       "prompt": "Ish joyini tayorlashga va ishga qo‘yishga ruxsat kimga va qan-day beriladi?",
       "option_text": "ruxsat ish joyini tayorlashni amalga oshiruvchigi va xodimlarni ishga qo‘yuvchiga shaxsan, telefon, radio, chopar yoki oraliq podstansiya navbatchisi orqali berilishi mumkin"
+    },
+    "495fd609-e903-4b48-9861-55f9f9551306": {
+      "correct_option_id": "909e88e3-d5dc-4cd8-b93e-86af984af1b7",
+      "prompt": "Ishida tanaffus bo‘lgan tezkor va tezkor-ta’mirlash xodim-lari mustaqil ishlashiga ruxsat berilishidan oldin nima bilan tani-shishlari kerak?",
+      "option_text": "energetika qurilmalari sxema va ish rejimidagi o‘zgarishlar, yo‘riqnoma-larga kiritilgan o‘zgartirishlar, yangidan amalga kiritilgan normativ-tex-nik xujjatlar, ushbu lavozim bo‘yicha chiqarilgan yangi buyruq, ko‘rsatma va boshqa materiallar"
+    },
+    "5ba31600-e4b1-468a-a888-a1df954e135c": {
+      "correct_option_id": "c0aa688e-cf40-4749-bf5c-a297aa75c012",
+      "prompt": "Tuman tarmoqlari dispetcherida qaysi hujjatlar bo‘lishi shart?",
+      "option_text": "sutkalik tezkor ijro sxemasi yoki maket sxema, tezkor jurnal, buyurtmalar jurnali, releli himoya, avtomatika va telemexanika jurnali, releli himoya va avtomatika o‘rnatmalari kartasi, farmoyishlar jurnali, uskunalardagi nuqsonlar jurnali"
+    },
+    "74f3df99-6452-4f44-8511-bbf5b2c6a5a5": {
+      "correct_option_id": "0423a7cb-9986-4123-b6fa-d48799b608c6",
+      "prompt": "Travma nima?",
+      "option_text": "tashqi omillar ta’sirida inson organizmining shikastlanishi va ularning butunligining va funksiyalarining buzilishi"
+    },
+    "6491973a-8d00-4b8a-a721-14ed00aeaff4": {
+      "correct_option_id": "2268b8c7-37c6-4556-a2f7-3a8929c1692f",
+      "prompt": "Brigada tarkibini kim o‘zgartirish xuquqiga ega?",
+      "option_text": "naryad beruvchi yoki ushbu elektr qurilmada mazkur ishni bajarish uchun naryad berish huquqiga ega bo‘lgan boshqa xodimga ruxsat beriladi"
+    },
+    "57fe9926-cb61-410a-91ca-b13014217e8f": {
+      "correct_option_id": "82e5b3ea-cc1b-452f-86bf-68509ab4dc46",
+      "prompt": "O‘lchov shtangalari qachon yerga ulanmaydi?",
+      "option_text": "tuzilish prinsipi yerga ulashni taqozo etuvchi hollardan tashqari, boshqa barcha holatlarda yerga ulanmaydi"
+    },
+    "f826a929-e5e3-474a-b438-47c9a84061f6": {
+      "correct_option_id": "20c5fba9-5d9c-4c51-9ad9-ec4dc2ee4e70",
+      "prompt": "Yuqori turuvchi tezkor xodimning vakolatiga kiruvchi masala-lar bo‘yicha ma’muriy - texnik raxbar xodim farmoyishini, tezkor xodim qanday bajarishi kerak?",
+      "option_text": "yuqori turuvchi tezkor xodimning roziligi bilan bajarishi shart"
+    },
+    "ac9162ef-9faf-4707-9aa5-d09385f78850": {
+      "correct_option_id": "191a1bf5-55f8-47bc-8386-fc29a5cf3ece",
+      "prompt": "Ish to‘liq tugagandan keyin elektr qurilmani tarmoqga ulash kimning ruxsati bilan amalga oshiriladi?",
+      "option_text": "ish joyini tayyorlashga va ishga qo‘yishga ruxsat bergan yoki uni almashtir-gan shaxsning ruxsati bilan"
+    },
+    "e446306f-f6b6-420a-8e94-b790c6a7b768": {
+      "correct_option_id": "c493d784-8c16-4310-beb2-360b9fe9f61f",
+      "prompt": "Avariya holatlarida ta’mirlashga chiqarilgan elektr quril-mani yoki elektr uskunani tarmoqga ulash mumkinmi?",
+      "option_text": "mumkin"
+    },
+    "03088b4e-60de-437e-931f-73621ca1847c": {
+      "correct_option_id": "fce4fd85-f243-4530-8d86-5961e4f5207a",
+      "prompt": "Test 3 Q 03088b4e-60de-437e-931f-73621ca1847c",
+      "option_text": "Option fce4fd85-f243-4530-8d86-5961e4f5207a"
+    },
+    "fdf35456-37ce-45b6-bf9c-199a5e6a0ef6": {
+      "correct_option_id": "c977899d-ba2f-4be4-94ea-d06b468911be",
+      "prompt": "Test 3 Q fdf35456-37ce-45b6-bf9c-199a5e6a0ef6",
+      "option_text": "Option c977899d-ba2f-4be4-94ea-d06b468911be"
+    },
+    "4a1fb12a-2891-493b-8c9e-c0bbe36238cf": {
+      "correct_option_id": "d38d8d68-74e9-4f1b-80aa-9d7f01e5a0ce",
+      "prompt": "Test 3 Q 4a1fb12a-2891-493b-8c9e-c0bbe36238cf",
+      "option_text": "Option d38d8d68-74e9-4f1b-80aa-9d7f01e5a0ce"
+    },
+    "381a57f4-52ce-451c-86d6-cb7c481114b0": {
+      "correct_option_id": "e9a007f4-9a28-4166-9cd5-7e4746933629",
+      "prompt": "Test 3 Q 381a57f4-52ce-451c-86d6-cb7c481114b0",
+      "option_text": "Option e9a007f4-9a28-4166-9cd5-7e4746933629"
+    },
+    "91028322-9570-4267-b279-31b1eaca3926": {
+      "correct_option_id": "7c88de56-7a37-458f-91d4-d67dd48b9ddf",
+      "prompt": "Test 3 Q 91028322-9570-4267-b279-31b1eaca3926",
+      "option_text": "Option 7c88de56-7a37-458f-91d4-d67dd48b9ddf"
+    },
+    "88e4964f-e5fd-4fc1-b2c8-74af2e27cfee": {
+      "correct_option_id": "e5d5e873-347b-431d-a200-5af5afcb6ca6",
+      "prompt": "Test 3 Q 88e4964f-e5fd-4fc1-b2c8-74af2e27cfee",
+      "option_text": "Option e5d5e873-347b-431d-a200-5af5afcb6ca6"
+    },
+    "062ea0d2-c6b3-437c-911d-9046a4ab5e2d": {
+      "correct_option_id": "fe21672a-9e8d-4e3e-9a58-25469596627e",
+      "prompt": "Test 3 Q 062ea0d2-c6b3-437c-911d-9046a4ab5e2d",
+      "option_text": "Option fe21672a-9e8d-4e3e-9a58-25469596627e"
+    },
+    "ec100775-f46e-4df8-824d-8d07c56a89ca": {
+      "correct_option_id": "12c25962-6d8a-41ff-b086-a9639e033c71",
+      "prompt": "Test 3 Q ec100775-f46e-4df8-824d-8d07c56a89ca",
+      "option_text": "Option 12c25962-6d8a-41ff-b086-a9639e033c71"
+    },
+    "2c8ded8c-c8fb-4fc2-a46b-f5a1feba945d": {
+      "correct_option_id": "857c9d7c-8d26-462b-bc3f-02337b97055f",
+      "prompt": "Test 3 Q 2c8ded8c-c8fb-4fc2-a46b-f5a1feba945d",
+      "option_text": "Option 857c9d7c-8d26-462b-bc3f-02337b97055f"
+    },
+    "2da2b7ae-61bd-415f-a465-8f152e3777c9": {
+      "correct_option_id": "e8cfd72d-74d0-4774-9c51-5494cbf24424",
+      "prompt": "Test 3 Q 2da2b7ae-61bd-415f-a465-8f152e3777c9",
+      "option_text": "Option e8cfd72d-74d0-4774-9c51-5494cbf24424"
+    },
+    "2b97f1f8-79ab-442b-a2f4-24c14a1aa596": {
+      "correct_option_id": "d739698c-b2b6-4d42-a974-6d62cb90d3a6",
+      "prompt": "Test 3 Q 2b97f1f8-79ab-442b-a2f4-24c14a1aa596",
+      "option_text": "Option d739698c-b2b6-4d42-a974-6d62cb90d3a6"
+    },
+    "d822bf53-a6fb-4f62-bee4-ae5dca21845d": {
+      "correct_option_id": "d4a2770e-1d92-4180-9f8b-27a682f850ff",
+      "prompt": "Test 3 Q d822bf53-a6fb-4f62-bee4-ae5dca21845d",
+      "option_text": "Option d4a2770e-1d92-4180-9f8b-27a682f850ff"
+    },
+    "44a00b06-c04e-4657-a037-0253fc9c8713": {
+      "correct_option_id": "1ed15e33-9ab7-4b4c-8dbb-e47759668860",
+      "prompt": "Test 3 Q 44a00b06-c04e-4657-a037-0253fc9c8713",
+      "option_text": "Option 1ed15e33-9ab7-4b4c-8dbb-e47759668860"
+    },
+    "96e9d130-1fbf-4da7-bfda-5ab72ffe50bb": {
+      "correct_option_id": "f76ae7eb-dcf5-42cc-9f6c-5e67dd14ab72",
+      "prompt": "Test 3 Q 96e9d130-1fbf-4da7-bfda-5ab72ffe50bb",
+      "option_text": "Option f76ae7eb-dcf5-42cc-9f6c-5e67dd14ab72"
+    },
+    "9d366839-1791-4c09-8504-25254aebd3aa": {
+      "correct_option_id": "7784e036-840b-4536-9088-301cff1f9775",
+      "prompt": "Test 3 Q 9d366839-1791-4c09-8504-25254aebd3aa",
+      "option_text": "Option 7784e036-840b-4536-9088-301cff1f9775"
+    },
+    "4da098c3-419e-45c5-9de4-21b0720d1d7f": {
+      "correct_option_id": "e00c8ffe-c613-4330-af07-dffaf50d1708",
+      "prompt": "Test 3 Q 4da098c3-419e-45c5-9de4-21b0720d1d7f",
+      "option_text": "Option e00c8ffe-c613-4330-af07-dffaf50d1708"
+    },
+    "b2904f8d-0ab2-4e21-b0db-2cc874a55426": {
+      "correct_option_id": "bf99057f-857a-4fb7-8a5b-2b12853b3e3b",
+      "prompt": "Test 3 Q b2904f8d-0ab2-4e21-b0db-2cc874a55426",
+      "option_text": "Option bf99057f-857a-4fb7-8a5b-2b12853b3e3b"
+    },
+    "9274e3a0-a03c-492c-8b88-e4078f755995": {
+      "correct_option_id": "0daee43b-932f-45ae-bd12-c2bad4ff0a31",
+      "prompt": "Test 3 Q 9274e3a0-a03c-492c-8b88-e4078f755995",
+      "option_text": "Option 0daee43b-932f-45ae-bd12-c2bad4ff0a31"
+    },
+    "d0e33d1b-5d27-47a8-95ca-79706db28d42": {
+      "correct_option_id": "f81e8f5a-84cc-4c3a-b63c-9e050a9c195f",
+      "prompt": "Test 3 Q d0e33d1b-5d27-47a8-95ca-79706db28d42",
+      "option_text": "Option f81e8f5a-84cc-4c3a-b63c-9e050a9c195f"
+    },
+    "b694102a-dbe3-4a77-b3ed-4e144ec41a00": {
+      "correct_option_id": "727b7ef9-0b86-41cd-967c-81831d351988",
+      "prompt": "Test 3 Q b694102a-dbe3-4a77-b3ed-4e144ec41a00",
+      "option_text": "Option 727b7ef9-0b86-41cd-967c-81831d351988"
+    },
+    "e3ce76bb-dde6-4dff-96c3-33a0e17ecfe7": {
+      "correct_option_id": "c5de33e6-3094-404f-961b-a52aa86cfb6f",
+      "prompt": "Test 3 Q e3ce76bb-dde6-4dff-96c3-33a0e17ecfe7",
+      "option_text": "Option c5de33e6-3094-404f-961b-a52aa86cfb6f"
+    },
+    "a58d1232-c3e4-4024-885f-25d494c9f0fc": {
+      "correct_option_id": "51b778ca-e4df-49f4-b8ed-9927075fb1d2",
+      "prompt": "Test 3 Q a58d1232-c3e4-4024-885f-25d494c9f0fc",
+      "option_text": "Option 51b778ca-e4df-49f4-b8ed-9927075fb1d2"
+    },
+    "5ec0a98c-18a6-44c2-b46e-f4901f8f1148": {
+      "correct_option_id": "1b847c9b-b18c-41c2-89d0-4f77b0b1079a",
+      "prompt": "Test 3 Q 5ec0a98c-18a6-44c2-b46e-f4901f8f1148",
+      "option_text": "Option 1b847c9b-b18c-41c2-89d0-4f77b0b1079a"
+    },
+    "ca2bf2c0-ec86-4f39-9c63-b3178bdd47e3": {
+      "correct_option_id": "df7e7739-3e24-4cc1-9f83-3e14fa1e8260",
+      "prompt": "Test 3 Q ca2bf2c0-ec86-4f39-9c63-b3178bdd47e3",
+      "option_text": "Option df7e7739-3e24-4cc1-9f83-3e14fa1e8260"
+    },
+    "9fbd3fca-928b-4c93-aaf6-084ef4d7973c": {
+      "correct_option_id": "f2c01151-36ca-488c-923d-0e47a367f3a8",
+      "prompt": "Test 3 Q 9fbd3fca-928b-4c93-aaf6-084ef4d7973c",
+      "option_text": "Option f2c01151-36ca-488c-923d-0e47a367f3a8"
+    },
+    "12497ae1-b174-4a46-8bbe-a991331d68a8": {
+      "correct_option_id": "bdb0742f-6523-4b23-81bb-f16681c2aead",
+      "prompt": "Test 3 Q 12497ae1-b174-4a46-8bbe-a991331d68a8",
+      "option_text": "Option bdb0742f-6523-4b23-81bb-f16681c2aead"
+    },
+    "a3099b53-4f6d-4d72-8c48-baf2a1eaa29a": {
+      "correct_option_id": "4faac23b-b8e7-496b-89a8-3f8cc9fba6a5",
+      "prompt": "Test 3 Q a3099b53-4f6d-4d72-8c48-baf2a1eaa29a",
+      "option_text": "Option 4faac23b-b8e7-496b-89a8-3f8cc9fba6a5"
+    },
+    "c8c1b9ea-182d-41b9-a247-cd307e2b3733": {
+      "correct_option_id": "f33f7809-45d5-4371-9bee-9ad181f07ff4",
+      "prompt": "Test 3 Q c8c1b9ea-182d-41b9-a247-cd307e2b3733",
+      "option_text": "Option f33f7809-45d5-4371-9bee-9ad181f07ff4"
+    },
+    "7635a3b7-e2c9-4f0c-9066-32e7d59f0934": {
+      "correct_option_id": "b1f15b8c-e1b8-4f4b-876f-a0c0ca99df7d",
+      "prompt": "Yog‘och tayanchga 1 ta ulama qism (pasinka)ni maxkamlashda bandaj qanday va qaerga qilinadi?",
+      "option_text": "yog‘och tayanchga 1 ta ulama qism (pasinka)ni maxkamlash 2 joydan bandaj qilinadi: biri ulama qismning (pasinka) yuqori qismidan 200 mm pastda, ikkinchisi yog‘och tayanchning quyi qismidan 250 mm yuqorida. Bandajlar orasidagi masofa 1000-1100 mm ni tashkil etadi",
+      "verified": true,
+      "note": "Verified from server response in Test 3"
+    },
+    "58a814aa-8b60-4a77-8f8d-d421470849d9": {
+      "correct_option_id": "c4bafa89-fe78-4d07-92cf-0ff0026ced31",
+      "prompt": "Test 3 Q 58a814aa-8b60-4a77-8f8d-d421470849d9",
+      "option_text": "Option c4bafa89-fe78-4d07-92cf-0ff0026ced31"
+    },
+    "7a1dc043-b1c1-4f8e-976d-631ca1d3bd5c": {
+      "correct_option_id": "a464e1a7-8665-42ca-8cf1-7ea054efb3ee",
+      "prompt": "Test 3 Q 7a1dc043-b1c1-4f8e-976d-631ca1d3bd5c",
+      "option_text": "Option a464e1a7-8665-42ca-8cf1-7ea054efb3ee"
+    },
+    "19270c52-5e79-4983-adb5-18bd4fad9fac": {
+      "correct_option_id": "e8470283-9e6d-4e3c-944f-53d01293159c",
+      "prompt": "Test 3 Q 19270c52-5e79-4983-adb5-18bd4fad9fac",
+      "option_text": "Option e8470283-9e6d-4e3c-944f-53d01293159c"
+    },
+    "c921a254-93dc-4567-ad73-c3e2a8fd08b1": {
+      "correct_option_id": "7ef59645-b044-48bc-b90d-4755e6bebf0b",
+      "prompt": "Aholi yashamaydigan va yetib borish qiyin bo‘lgan hududlarda kuchlanishi 110 kV bo‘lgan tarmoqlarda havo tarmog‘i simidan yergacha bo‘lgan masofa qancha bo‘lishi kerak?",
+      "option_text": "kuchlanishi 110 kV bo‘lgan tarmoqlar uchun havo tarmog‘i simidan yergacha bo‘lgan masofa aholi yashamaydigan joylarda 6 metr, yetib borish qiyin bo‘lgan hududlarda 5 metrni tashkil qilishi kerak",
+      "verified": true,
+      "note": "Verified from server response in Test 3"
     }
   },
   "theories": {
