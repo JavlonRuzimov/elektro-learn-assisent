@@ -1,0 +1,20 @@
+{
+  "62579c02-53bc-4de1-8af0-db8d5bca9ba7": {
+    "prompt": "Texnologik sxemalar (chizmalar) qancha muddatda tekshirilishi kerak?",
+    "option_id": "d0b95ac0-0313-43ef-a679-23eabe092ff8",
+    "option_text": "3 yilda bir marta",
+    "source": "13_711_full.txt"
+  },
+  "26dd3f93-dd11-410c-aabe-6e5eeb93bf82": {
+    "prompt": "Bir ish raxbariga beriladgan naryadlar sonini kim belgilay-di?",
+    "option_id": "cfc87562-6cbc-44fb-8b53-4cab0a663614",
+    "option_text": "naryad beruvchi belgilaydi",
+    "source": "12_638 09.10.2020.txt"
+  },
+  "9c87cc0a-db3e-4653-a1cd-040edc805f52": {
+    "prompt": "Kaysi holatlarda zarb bilan ishlaydigan mashina va mexa-nizmlarning kabel trassalarida ishlashiga ruxsat berilmaydi?",
+    "option_id": "a1ceaace-9760-45a2-aa75-c4c5905afc82",
+    "option_text": "1 metrdan kam masofada",
+    "source": "13_711_full.txt"
+  }
+}

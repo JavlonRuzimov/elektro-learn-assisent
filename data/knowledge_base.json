@@ -3044,6 +3044,356 @@
       "correct_option_id": "09f0bc47-fcd2-4a71-af7e-ca6b1254f61d",
       "prompt": "Suyaklar sinishi bu nima?",
       "option_text": "suyak butunligining buzilishi suyakning sinishi deb ataladi"
+    },
+    "f601db43-2c1b-44c9-bd7a-35edcf9fa1fa": {
+      "correct_option_id": "2fcaceba-4a50-4ee8-b737-898bd3cacf6e",
+      "prompt": "Kabellarni ulash muftalari yorliqlarida nima ko‘rsatilgan bo‘lishi kerak?",
+      "option_text": "mufta raqami, montaj qilingan sanasi"
+    },
+    "47ebe259-1050-4fa2-81e5-5205757db4e4": {
+      "correct_option_id": "c60c46d6-8452-48b7-9328-09c1c9c1b931",
+      "prompt": "Ximoya vositalarini qanday temperaturada sinovdan o‘tkazila-di?",
+      "option_text": "15° S - 20° S haroratda 50 Gs chastotali o‘zgaruvchan tok bilan"
+    },
+    "398f5c26-aaab-49f5-9d3d-04b560dabd75": {
+      "correct_option_id": "93377a82-f0f5-4644-9c29-c0003c407b5c",
+      "prompt": "Quvursimon razryadlagichlarda yoy qaysi prinsip asosida so‘ndiriladi?",
+      "option_text": "uzun bo‘ylama portlash hosil bo‘lishi xisobiga"
+    },
+    "b23951bb-1627-496b-af40-84a8c64ced51": {
+      "correct_option_id": "c9e97470-efae-4579-987c-2255649b52fe",
+      "prompt": "Yong‘in xavfsizligi bo‘yicha yo‘riqnomalar qancha muddatda qay-ta ko‘rib chiqilishi kerak?",
+      "option_text": "TEQQda belgilangan muddatlarda qayta ko‘rib chiqiladi"
+    },
+    "62579c02-53bc-4de1-8af0-db8d5bca9ba7": {
+      "correct_option_id": "172d67c2-0840-4269-bb01-1c7546cf8a21",
+      "prompt": "Texnologik sxemalar (chizmalar) qancha muddatda tekshirilishi kerak?",
+      "option_text": "2 yilda bir marta"
+    },
+    "26dd3f93-dd11-410c-aabe-6e5eeb93bf82": {
+      "correct_option_id": "cfc87562-6cbc-44fb-8b53-4cab0a663614",
+      "prompt": "Bir ish raxbariga beriladgan naryadlar sonini kim belgilay-di?",
+      "option_text": "naryad beruvchi belgilaydi"
+    },
+    "c1f6df3b-6267-4d9a-846c-e662c97c0a4e": {
+      "correct_option_id": "17d88601-d89b-4299-8615-75fae15be04e",
+      "prompt": "Bir dona ulama qism (pasinka) bandaj qilishda simning uzunligi qaysi formula yordamida aniqlanadi",
+      "option_text": "Lb=26n(D1+D2) (bu yerda Lb-bandaj qilinadigan simning uzunligi, n-bandajning o‘ramlar soni, D1-yog‘och tayanch va D2-ulama qism (pasinka)ning diametri)"
+    },
+    "692e8d9b-5f8a-4a75-8aec-912e9a9fc32b": {
+      "correct_option_id": "9add9c17-d7b2-43d7-b409-c6165c73e368",
+      "prompt": "Ximoya vositalarini elektr sinovlaridan oldin nima qilish kerak?",
+      "option_text": "o‘lchami, but va rasoligi, jihozlanganligi, izolyatsion yuzasining holatini tekshirish uchun tashqi ko‘rikdan o‘tkazilishi kerak"
+    },
+    "ff9c8ca5-5579-4906-9649-96f75af88e23": {
+      "correct_option_id": "ec9deda2-ca87-46f6-8cad-a7c889235b70",
+      "prompt": "Ximoya vositalari ro‘yxati kim tomonidan tasdiqlanadi?",
+      "option_text": ". korxona bosh muhandisi yoki tuman elektr tarmoqlari boshlig‘i tomoni-dan"
+    },
+    "d24614af-3daf-4e98-8984-b4632ce32c7b": {
+      "correct_option_id": "421d5540-cca3-4b42-80c2-d9cba235037f",
+      "prompt": "Havo elektr uzatish tarmoqlarini gabaritlari qanday asboblar yordamida o‘lchanadi?",
+      "option_text": "burchak o‘lchovchi asbob (uglomer), balandlik o‘lchovchi asbob (visotomer) neylon arqon, quruq paxta arqon va izolyatsion shtanga yordamida"
+    },
+    "d09f0590-76d2-4b48-ae92-e52ba53457cf": {
+      "correct_option_id": "d5175f53-e48e-40fc-b6eb-9dfb566ea9a8",
+      "prompt": "Energetika ob’ektlarini normal ekspluatatsiya kilish uchun kim javobgar?",
+      "option_text": "energetika ob’ektining rahbari"
+    },
+    "77847795-d97e-4056-8e87-dbe0a78ab0dc": {
+      "correct_option_id": "ec3a0ed5-586e-4cdb-a4da-33fcfe5ad19d",
+      "prompt": "Elektr stansiyalari, qozonxonalar, elektr va issiqlik sohalarining asosiy vazifasi nimadan iborat?",
+      "option_text": "elektr va issiqlik energiyasini ishlab chiqarish, uzatish, taqsimlash va uni iste’molchilarga yetkazib berishdan iborat"
+    },
+    "738dd04a-9ea4-4a32-9ec3-736abdb4ee28": {
+      "correct_option_id": "a6eb7ec9-7fc3-45e2-ba53-03fd660f0909",
+      "prompt": "Quvursimon razryadlagichlar qanday burchak ostida o‘rnatiladi?",
+      "option_text": "quvursimon razryadniklar ochiq qismini pastga qaratib gorizontal holatda 30 gradusdan kam, 80 gradusdan ortiq bo‘lmagan burchak ostida o‘rnatiladi"
+    },
+    "baa1eb3f-09f6-4741-bf2f-610d809ab121": {
+      "correct_option_id": "5faa22ce-16e6-4107-8b76-a2b936dc2e0f",
+      "prompt": "Elektrostansiya va podstansiya elektr qurilmalarini yakka o‘zi ko‘rib chiqish xuquqi kimlarga beriladi ?",
+      "option_text": "navbatchi yoki tezkor-ta’mirlash xodimlaridan bo‘lgan elektr xavfsizligi bo‘yicha III dan kam bo‘lmagan guruhga ega xizmatchi yoki V guruhga ega bo‘lgan ma’muriy-texnik xodim, yoxud korxona raxbariyati bir o‘zi ko‘rikdan o‘tkazi-shi mumkin"
+    },
+    "a122dd29-129d-4bff-b934-685a9e929e3f": {
+      "correct_option_id": "f15e09d5-ad27-45e6-b504-0084ad059dc6",
+      "prompt": "Quyida sanab o‘tilganlardan qaysi birida navbatdan tashqari bilim sinovi o‘tkaziladi?",
+      "option_text": "xodim tomonidan qoida, me’yor va yo‘riqnomalar talabi buzilganda"
+    },
+    "6a190ce2-3b0a-4bed-80bd-220a60d15cd1": {
+      "correct_option_id": "7b943982-7ffc-42d8-8221-0d9ab90d2696",
+      "prompt": "Navbatdan tashqari yo‘riqnoma qachon o‘tkaziladi?",
+      "option_text": "a, b va v javoblar to‘g‘ri"
+    },
+    "70a81c14-de9e-4e53-a275-e63f61abb42e": {
+      "correct_option_id": "7ced5841-9fa4-48e7-b02b-5a52f820a09c",
+      "prompt": "Energetika tashkilotlarida yong‘in xavfsizligini ta’minlash uchun mas’uliyat kimga yuklatiladi?",
+      "option_text": "tashkilotlar rahbarlariga yong‘in xavfsizligini ta’minlash uchun mas’uli-yat yuklatiladi"
+    },
+    "bd7b48ee-280a-4833-a241-3eb9bb13179c": {
+      "correct_option_id": "d1b8e115-6c34-41c3-8a98-bf392eb200e4",
+      "prompt": "Sexlar, laboratoriyalar, bo‘limlar, ustaxonalar va boshqa ob’-yektlarning yong‘in xavfsizligi holati uchun kim javobgar xisoblanadi?",
+      "option_text": "sexlar, laboratoriyalar, bo‘limlar, ustaxonalar va boshqa ishlab chiqarish uchastkalari hamda ob’ektlari yong‘in xavfsizligi holati uchun ularning rahbarlari, rahbarlari bo‘lmagan vaqtda esa, ularning vazifasini bajaruvchi shaxslar javobgar bo‘ladilar"
+    },
+    "5f219d64-b958-4737-9208-32e6d5fd1dc5": {
+      "correct_option_id": "e785ae69-8208-4f3a-9444-ce842240d63f",
+      "prompt": "KMT brigadasi ishlayotgan HL uchastkasiga yerga ulagichni kim o‘rnatishi va olib tashlashi mumkin?",
+      "option_text": "ekspluatatsiya korxonasi tomonidan tayinlangan ishga qo‘yuvchi naryad bo‘yicha bajarishi shart"
+    },
+    "75175a38-75ea-48f8-92e7-e4652c41d161": {
+      "correct_option_id": "cc9733f5-2f87-4951-a35c-c38324d3ad53",
+      "prompt": "Ish joyini tayorlash va ishga qo‘yish qachon amalga oshiriladi?",
+      "option_text": "ish joyini tayorlash va ishga qo‘yish faqat navbatchi yoki bunga vakolati bor shaxsdan ruxsat olingandan so‘ng bajarilishi mumkin"
+    },
+    "aae7baad-8930-41f2-aafe-a15f135b4c85": {
+      "correct_option_id": "e11767f0-0767-48f4-9631-3529c23ab71c",
+      "prompt": "\"Ish joyidagi yo‘riqnomalarni qayd qilish jurnali\" qancha muddat saqlanadi?",
+      "option_text": "jurnal to‘lgandan keyin mas’ul shaxsda 1 yil va arxivda 10 yil davomida"
+    },
+    "9c87cc0a-db3e-4653-a1cd-040edc805f52": {
+      "correct_option_id": "3de7b8fc-d446-44a7-8491-3cb14425db03",
+      "prompt": "Kaysi holatlarda zarb bilan ishlaydigan mashina va mexa-nizmlarning kabel trassalarida ishlashiga ruxsat berilmaydi?",
+      "option_text": "5 metrdan kam masofada"
+    },
+    "d71fba6d-7547-4234-b5dd-9c6c96887d96": {
+      "correct_option_id": "d10215ed-936a-4221-af1d-570726ed0901",
+      "prompt": "Brigada a’zolari soni va uning tarkibi nimaga asosan belgi-lanadi?",
+      "option_text": "ularning elektr xavfsizligi bo‘yicha guruhlarini hisobga olgan holda ish bajarish sharoitlariga, hamda brigada a’zolari ustidan ish bajaruvchining (kuzatuvchining) nazoratini ta’minlash imkoniyatiga qarab belgilanadi"
+    },
+    "cb4bf2e1-f8a4-49ef-9ec8-0b9957078bcb": {
+      "correct_option_id": "2f2997d6-4fa4-44c6-aed8-87eefb49d8ea",
+      "prompt": "Ichimlik sodasi va bor kislotasining eritmalari qaysi ish joylarida bo‘lishi kerak?",
+      "option_text": "fakat ishkor va kislota bilan ishlanadigan ish joylarda"
+    },
+    "68acd467-bde6-440a-8dd3-f63ba68760d5": {
+      "correct_option_id": "2bf9c8ca-1075-4bd6-9492-94408a4ae642",
+      "prompt": "Suzayotgan odamning boldir mushaklarida tomir tortishib qolsa nima kilish tavsiya etiladi?",
+      "option_text": "chalqancha suzib tomir tortiishgan oyoqni oldinga cho‘zish va barmoqlarini o‘ziga qaratib tortish tavsiya etiladi Usta ______________"
+    },
+    "b7554977-aeb0-4e72-a2db-bb75f06b1837": {
+      "correct_option_id": "c7ba92b0-60b5-43e7-bf59-064b5befda4e",
+      "prompt": "Naryad yoki farmoyish beruvchining javobgarligi nimadan ibo-rat?",
+      "option_text": "naryad, farmoyish beruvchi ishni xavfsiz bajarish mumkinligini belgi-laydi.U naryadda ko‘rsatilgan xavfsizlik choralarini to‘g‘riligi va to‘liqli-gi uchun, brigadaning sifat va son jixatdan tarkibi, javobgar shaxslarni tayinlash uchun, shuningdek naryadda ko‘rsatilgan xizmatchilar bajarishi kerak bo‘lgan ishga ularning elektr xavfsizligi bo‘yicha guruhi muvofiqligi uchun javobgardir"
+    },
+    "a0781306-c7f0-49fc-8b04-9126ee3a2726": {
+      "correct_option_id": "467b09b0-4b28-4f3a-a88b-1d49c623572f",
+      "prompt": "Ish rahbarining javobgarligi nimadan iborat?",
+      "option_text": "ish raxbari naryadda ko‘rsatilgan barcha xavfsizlik choralarining bajari-lishi va yetarliligi, ishga qo‘yuvchi va ish bajaruvchi tomonidan brigada a’zo-lariga berilgan yo‘riqnomaning sifati va to‘liqligi uchun, shuningdek ish jarayonida ishni xavfsiz olib borishni tashkil qilish uchun javob beradi"
+    },
+    "22cd75a1-f844-49d6-a4e2-ce8b34cd376a": {
+      "correct_option_id": "478c4162-39dd-42c1-82ff-caffbd89a8ef",
+      "prompt": "Energetika moylarni ekspluatatsiya qilganda nima ta’min-lanishi kerak?",
+      "option_text": "moy to‘ldirilgan uskunalar texnologik tizimlarining ishonchli ishlashi; moylarning ekspluatatsion xususiyatlarining saqlanishi, ishlatilgan moy-larni yig‘ish va o‘z maqsadi bo‘yicha qayta ishlatish uchun regeneratsiya qilish"
+    },
+    "2732995e-f9b1-400d-8aea-02f7be260aef": {
+      "correct_option_id": "744dcf63-bf4e-4dc5-9ce4-7f534fe6af87",
+      "prompt": "Korxona rahbariyatining yozma ko‘rsatmasi bilan o‘z xodimlar-iga qaysi huquqlarni berish rasmiylashtiriladi?",
+      "option_text": "naryad, farmoyish berish, ish rahbari, ish bajaruvchi, ishga qo‘yuvchi (tezkor-ta’mirlovchi xodimlardan), shuningdek elektr qurilmalarni bir o‘zi ko‘rib chiqish"
+    },
+    "3c944c45-3187-4955-a5a2-df39d99f54d1": {
+      "correct_option_id": "d1da3cc5-7a91-41b7-8124-36ac8349a401",
+      "prompt": "Yong‘in xavfsizligi bo‘yicha yo‘riqnomalar kim tomonidan tas-diqlanadi?",
+      "option_text": "tashkilot bosh muxandisi tomonidan"
+    },
+    "29a40e8d-c11b-4f80-9de6-acf1fb55aa9b": {
+      "correct_option_id": "de3d4538-182b-41d1-9462-3caa09640453",
+      "prompt": "Brigada tarkibini o‘zgartirish haqidagi ko‘rsatma kimga va qanday beriladi?",
+      "option_text": "telefon, radio yoki chopar orqali ishga qo‘yuvchiga, ish raxbariga yoki ish bajaruvchiga berilishi mumkin"
+    },
+    "3397d8c7-572f-4ebf-b310-c95ce8e2caef": {
+      "correct_option_id": "f417052c-044c-4f87-a2f8-bc2f084da557",
+      "prompt": "Ximoya vositalarini qayd qilish jurnali qancha muddatda va kim tomonidan nazorat qilinishi kerak?",
+      "option_text": ". har 6 oyda bir marta himoya vositalari holatiga javobgar ma’muriy-tex-nik xodim tomonidan"
+    },
+    "6171afa1-c406-4a0f-b1d8-2f1eb163a753": {
+      "correct_option_id": "d35eed4e-96a7-4829-987d-c18d651b758f",
+      "prompt": "Yordam ko‘rsatayotgan shaxs nimalarni bilishi kerak?",
+      "option_text": "hayotiy muxim funkiyalarining buzilishining asosiy alomatlarini, jabr-lanuvchini zararli va xavfli omillardan xalos etishni, jabrlanuvchining xolatini baxolashni, beriladigan 1-yordam ketma-ketligini. Zarur bo‘lsa jabrlanuvchiga yordam berishda va uni transportirovka qilishda qo‘l keladi-gan vositalardan foydalanishni bilishi shart"
+    },
+    "04b605dd-7f36-4ad3-9384-cc582a39cf4d": {
+      "correct_option_id": "89dc52b4-9d61-42bc-bb2e-f793e5ddcbde",
+      "prompt": "Uskunalarni ta’mirlash uchun talabnomalar necha xil bo‘ladi?",
+      "option_text": "2 xil"
+    },
+    "f3779e08-15a9-4857-9f40-100b42bb12a7": {
+      "correct_option_id": "52618f91-1787-455b-aeb3-0b08ba77dd2e",
+      "prompt": "Ish rahbari ish joyi tayyorligini kim bilan birga tekshi-radi?",
+      "option_text": "ishga qo‘yuvchi bilan birga yoki uning ruxsati bilan o‘zi mustaqil tekshiri-shi shart"
+    },
+    "222d4b44-b1da-413d-8082-3a4ef2bf1f4d": {
+      "correct_option_id": "9d40cca5-9aff-43f3-8206-19018e5b9fd2",
+      "prompt": "Jabrlangan shaxsga birinchi yordam ko‘rsatish maqsadga muvo-fiqligini kim xal qiladi?",
+      "option_text": "fakat shifokor"
+    },
+    "ff56b045-9222-4c2a-99b8-6d77e9fcc9d5": {
+      "correct_option_id": "3e375a79-fb30-4b48-ab29-0de1e2db723b",
+      "prompt": "Naryad muddatini kim uzaytirishi mumkin?",
+      "option_text": "mazkur naryadni bergan yoki ushbu elektr qurilmada naryad berish huquqiga ega bo‘lgan xodimgina uzaytirishi mumkin"
+    },
+    "3b8003e6-bb5b-4b8d-8369-75c141f854f4": {
+      "correct_option_id": "8a6958bb-a741-4c64-8b46-2b88d872cb61",
+      "prompt": "Ta’mirlash va sozlash xodimlarining mustaqil ishlashiga qachon ruxsat beriladi?",
+      "option_text": "yo‘riqnoma, stajorlik, bilimlar sinovidan o‘tgandan so‘ng"
+    },
+    "ce38fcae-adc1-48b0-8746-c9d218e45493": {
+      "correct_option_id": "6cd3ba87-a1f5-42f3-9e42-f1e0bd18f0af",
+      "prompt": "Ma’muriy-texnik xodimlar tezkor xujjatlarni qancha mud-datda tekshirib turishi kerak?",
+      "option_text": "har kuni"
+    },
+    "58e9d309-1a1b-478b-9eb6-0cf00c530100": {
+      "correct_option_id": "7c0129ea-e7eb-452d-b089-6d573704360e",
+      "prompt": "Brigadani nechta naryad bilan ishga qo‘yishga ruxsat beriladi?",
+      "option_text": "brigadani faqat bitta naryad bilan ishga qo‘yishga ruxsat beriladi"
+    },
+    "7d06e4f4-7dfd-4a53-a5ba-4e30807beb03": {
+      "correct_option_id": "1f7a41ed-3384-4658-b47d-1bb66c2547bf",
+      "prompt": "Tayyorlangan ish joyiga kelgusi kunlarda brigadani ishga qo‘yish kim tomonidan amalga oshirishladi?",
+      "option_text": "ishga qo‘yuvchi yoki uning ruxsati bilan ish raxbari tomonidan amalga oshiriladi"
+    },
+    "9fc6440c-e6ec-47ef-8d9b-90890ae1356c": {
+      "correct_option_id": "cd48b4cf-6537-4e2f-9aa6-4d209052e765",
+      "prompt": "Dublyorlikdan kimlar va qaysi holatlarda o‘tadi?",
+      "option_text": "tezkor va tezkor-ta’mirlash xodimlari birlamchi bilim sinovidan o‘tganda, ishdagi uzoq tanaffusdan so‘ng hamda korxona yoki tarkibiy bo‘linma raxba-rining qaroriga ko‘ra o‘tishlari kerak"
+    },
+    "3cbbd046-2f39-442e-a712-929f762cc57a": {
+      "correct_option_id": "6b57781c-ed04-4315-a89a-c5ef76e83490",
+      "prompt": "Moy bilan tabiiy sovutiladigan transformatorlar moyining yuqori katlamlarida ruxsat etilgan maksimal haroratini ko‘rsating?",
+      "option_text": "95°S"
+    },
+    "a7a94589-3d0d-4fed-9bb1-9a09fc86fd4e": {
+      "correct_option_id": "d0b1208b-2dee-453f-a2ee-44def4593a73",
+      "prompt": "Jabrlanganga birinchi yordamni ko‘rsatishda amalga oshirila-digan xarakatlar qanday ketma-ketlikda bajarilishi kerak?",
+      "option_text": "- jabrlanganning organizmiga xavfli va zararli omillar ta’sirini (elektr tokining ta’siridan xalos etish, zararlangan muhitdan olib chiqish, yonayotgan kiyimlarini o‘chirish, suvdan chiqarib olish va h.k) bartaraf qilish - jabrlanganning holatini baholash - jabrlanuvchini hayoti uchun eng ko‘p xavf solayotgan jarohatning hususiyat-larini va uni qutqarish bo‘yicha qilinadigan harakatlarning ketma-ketligini aniqlash - jabrlanuvchini qutqarish bo‘yicha zarur chora-tadbirlarni eng kerakligi tartibida bajarish (nafas yo‘llari o‘tkazuvchanligini tiklash; sun’iy nafas, yurakning tashqi massaji muolajalarini o‘tkazish; qon oqishini to‘xtatish; singan joylarni mahkamlab qo‘yish, bog‘lamalar qo‘yish va h.k) - tibbiyot xodimlari yetib kelishiga qadar jabrlanuvchining asosiy hayotiy funksiyalarini saqlab turish - tez tibbiy yordam yoki shifokorni chaqirish yoxud jabrlanuvchini eng yaqin tibbiyot muassasasiga yetkazish choralarini ko‘rish"
+    },
+    "773e5eb2-9d33-4e7f-9f1e-fdad96bb8d2f": {
+      "correct_option_id": "025ed5ad-b34f-484e-a109-64b1db55173f",
+      "prompt": "Elektr tarmorlari dispetcherlari qachon shaxsiy javobarlikga tortiladi?",
+      "option_text": "bevosita qo‘l ostidagi xodimlar yoki ularning ko‘rsatmasi bo‘yicha ish baja-ruvchi xodimlar tomonidan yo‘l qo‘yilgan buzilishlar uchun"
+    },
+    "b8c94e7a-cc1d-43db-a877-7f6823416ae7": {
+      "correct_option_id": "4a8c759e-5235-486d-9ed9-18c697d4abb5",
+      "prompt": "Yong‘in-texnik minimumi mashg‘ulotlari kimlar bilan o‘tkazi-ladi?",
+      "option_text": "yong‘in xavfi yuqori bo‘lgan ishlarda ishlaydigan xodimlar bilan maxsus ishlab chiqilgan dastur bo‘yicha yong‘in-texnik minimumi mashg‘ulotlari o‘tka-ziladi"
+    },
+    "20734064-a4e7-4ffa-9e7a-3519d8350480": {
+      "correct_option_id": "2c7a22fc-d4fa-48a2-841a-123edc93ac49",
+      "prompt": "Xodimlar bilan ishlash uchun javobgarlik kimning zimmasiga yuklatilgan?",
+      "option_text": "javobgarlik korxona raxbari zimmasiga yuklatilgan"
+    },
+    "5f8d9758-eea2-4b16-912b-3478c4c830e7": {
+      "correct_option_id": "ad296ed7-f0ec-4c96-8f2f-c84780413858",
+      "prompt": "Tezkor xodimlarning birini ikkinchisiga almashtirilishi kimga ma’lum qilinishi kerak?",
+      "option_text": "yuqori turuvchi tezkor xodimga ma’lum qilinishi kerak"
+    },
+    "63895ad6-2ff8-4de7-befe-3e37441f3b32": {
+      "correct_option_id": "c6514c0d-e31a-4eee-aee6-ebd74022061d",
+      "prompt": "Razryadlagichlar qachon sinovdan o‘tkaziladi?",
+      "option_text": "ishga tushirishdan oldin to‘la sinovdan o‘tkaziladi so‘ngra, ushbu elektr qurilmani joriy ta’mirlash davrida izolyatsiya holati tekshirilib boriladi. Agar izolyatsiya ko‘rsatkichlari zavod yoki oldingi sinov ko‘rsatkichlaridan 30 foizdan yuqori farq qilsa to‘la sinovdan o‘tkaziladi"
+    },
+    "725b2276-b13c-4a6a-bd13-4bcef8cb0718": {
+      "correct_option_id": "b7d6f5e1-5a84-4c62-934d-533a1e1eef49",
+      "prompt": "Ish joyini tayyorlashga va ishga qo‘yishga ruxsat bergan yoki uni o‘rnini almashtirgan shaxsning ruxsati (farmoyish)ni olmasdan elektr qurilmani elektr tarmoqqa ulash xuquqi berilishi qaerda yoziladi?",
+      "option_text": "naryadning “Alohida ko‘rsatmalar” satrida yoziladi"
+    },
+    "e5b07a98-7f4b-4664-b509-cfb212aed6ad": {
+      "correct_option_id": "d93f2901-e2b3-4955-9d45-7b2515648e6e",
+      "prompt": "Xodisa ro‘y bergan joyga tibbiyot xodimlarini chaqirish imko-ni bo‘lmasa nima qilish kerak?",
+      "option_text": "jabrlanuvchini eng yaqin tibbiy muassasaga yetkazish choralarini ko‘rish"
+    },
+    "c5deb709-2563-4a15-9166-f082a052042b": {
+      "correct_option_id": "9b42ad96-fc2b-4048-9e9f-dc71de355748",
+      "prompt": "Naryad va farmoyishlar bo‘yicha bajariladigan ishlarni xi-sobga olish jurnali to‘lgandan keyin qancha muddat saqlanadi?",
+      "option_text": "oxirgi yozuvdan so‘ng 6 oy"
+    },
+    "ad5af8e2-9522-4044-8661-217cb05a3308": {
+      "correct_option_id": "fb665b74-d461-4095-a013-8c1a024092f6",
+      "prompt": "Farmoyish yoki ruxsat bergan yoki olgan tezkor xodim nima qi-lishi kerak?",
+      "option_text": "farmoyishni yoki ruxsatni berib yoki olib, uni tezkor jurnalga yozib qo‘yishi shart"
+    },
+    "dbda2b0a-36fa-4036-b89e-3ef93126a6f4": {
+      "correct_option_id": "436d2ca0-33c3-4fc9-ba91-03607dc33cb2",
+      "prompt": "Qanday holatlarda yuqori turuvchi xodim farmoyishini baja-rish taqiqlanadi?",
+      "option_text": "xavfsizlik texnikasi qoidasining buzilishiga, uskunalarning shikastla-nishiga, elektr stansiyalar va podstansiyalarning o‘z extiyojlari ta’minoti yo‘qolishiga yoki 1-toifali istemlchilarni toksizlantirishga olib keluvchi farmoyishlarni"
+    },
+    "bd1375ab-c7e7-4b65-a12b-3de001abf2c7": {
+      "correct_option_id": "5f860970-6613-4581-a3ad-659cd176e76e",
+      "prompt": "Boshkaruv organiga bevosita ta’sir ko‘rsatish xuquqiga ega bo‘lgan ta’mirlash xodimi tezkor xodimlarning qaysi toifasiga tegish-li bo‘ladi?",
+      "option_text": "tezkor-ta’mirlash xodimlari toifasiga"
+    },
+    "f996c584-cb90-4b88-a02a-a8aaac29cdf6": {
+      "correct_option_id": "ad125b41-6e38-4b9e-a9e4-ae334a2ea958",
+      "prompt": "Ish joyini tayyorlashga va ishga qo‘yishga ruxsat etuvchi shaxs nimaga javob beradi?",
+      "option_text": "ish bajarish uchun ko‘zda tutilgan uskunani o‘chirish va yerga ulash choralari-ning yetarliligiga va ularni amalga oshirish mumkinligi, shuningdek ishga qo‘yiladigan brigadalarning ish vaqtlari va joylarini muvofiqlashtirish uchun javob beradi"
+    },
+    "acab5495-e0a0-4570-9b65-798f349e321d": {
+      "correct_option_id": "a70662a5-1f5a-4ac4-a530-5bbedfa299d2",
+      "prompt": "Yopiq taqsimlash qurilmalarida payvandlash va boshqa yong‘in chiqishi xavfi bo‘lgan ishlarini bajarish mumkinmi?",
+      "option_text": "faqat yong‘inga qarshi zarur tadbirlar bajarilgandan so‘ng olib chiqish imkoni bo‘lmagan uskunalarda o‘tkazishga ruxsat beriladi"
+    },
+    "9d5da343-22b0-4504-9ff1-cf2a07cc1781": {
+      "correct_option_id": "a9a8296f-913d-49fc-91e6-e183cdac02f9",
+      "prompt": "Yong‘inga qarshi suv bilan ta’minlash tizimining barcha quvur-lari qaysi rangga bo‘yaladi?",
+      "option_text": "qizil rangga"
+    },
+    "eeba7674-b97d-42a3-a51e-97277c0803fd": {
+      "correct_option_id": "0c102cf7-2df6-4434-941a-683e6dd275d1",
+      "prompt": "Tezkor-chiqish brigadasi avtomobillarida nechta o‘t o‘chirgich bo‘lishi shart?",
+      "option_text": "har birining og‘irligi 5 kg dan kam bo‘lmagan kamida to‘rtta karbonat kislotali va kukunli o‘t o‘chirgichlar bo‘lishi shart"
+    },
+    "42324579-e053-4e8c-aa66-cdf2d2e05003": {
+      "correct_option_id": "2906a52d-6aca-426d-92d0-e7651504a958",
+      "prompt": "RTV-10-0.5/2,5U1, RTV-10-2/10U1 markali quvursimon razryadlagichlarda tashqi uchqun oralig‘i (iskroviy promejutok) masofasi qancha bo‘ladi?",
+      "option_text": "15 mm"
+    },
+    "236a86cd-de9a-4504-8ac1-e8e3ce61452c": {
+      "correct_option_id": "66ad909c-375b-4710-ae66-ee5d3f09a3bf",
+      "prompt": "Hushsizlik nima?",
+      "option_text": "hushsizlik - bu to‘satdan, miyadan qonning ketib qolishi sababli qisqa vaqtga (bir necha soniyadan bir necha daqiqagacha) hushni yo‘qotishdir Dispetcher ______________"
+    },
+    "0f2278db-8eda-436c-bb02-09c88a57b2f4": {
+      "correct_option_id": "7dbcec92-4f7b-48b0-982a-a036b3339434",
+      "prompt": "Smenani qabul qilish - topshirish vaqtida tezkor xodim quyi-dagilardan qaysi birini bajarishi kerak?",
+      "option_text": "smenani qabul qilish-topshirishni jurnalga yoki qaydnomaga yozib, uni qabul qiluvchi va topshiruvchining imzosi bilan rasmiylashtiradi"
+    },
+    "789dc55c-b439-4824-b31c-44d11b62670f": {
+      "correct_option_id": "0854dbc6-cf5b-4d51-a03a-d000d493e10a",
+      "prompt": "Ximoya vositalarining sinovdan o‘tkazilganligi qaerda qayd qilinadi?",
+      "option_text": ". ixtiyoriy shakldagi jurnalda"
+    },
+    "eaef953e-0e62-4b46-989f-b39c2d4b5d99": {
+      "correct_option_id": "32133f0c-47fa-4db8-8829-3f8ac0be0e68",
+      "prompt": "Qaysi holatda ish joyini tayorlash to‘xtatiladi?",
+      "option_text": "ish joyini tayyorlashga taaluqli choralarning to‘g‘riligiga va yetarligiga, shuningdek ishning xavfsiz bajarilishiga shubxa paydo bo‘lganda, ushbu ish joyini tayyorlash to‘xtatilishi shart"
+    },
+    "f2e4cbe2-90bb-4933-b2be-3894811a2dd8": {
+      "correct_option_id": "f28e102f-5f65-4925-8034-7ec1f50379ba",
+      "prompt": "1000 Vgacha bo‘lgan elektr uskunalarda kuchlanish bor yo‘qli-gini tekshirish uchun nazorat lampasidan foydalanish mumkinmi?",
+      "option_text": "man etiladi"
+    },
+    "d8f4313e-6a9a-47a1-8d62-a6394e9df19f": {
+      "correct_option_id": "20a7b92d-8931-417a-98d4-767200d762e1",
+      "prompt": "Ish faoliyatida tanaffusi bo‘lgan tezkor va tezkor-ta’mirlash xodimlari qancha muddat dublyorlikdan o‘tishi kerak?",
+      "option_text": "3 xaftadan 2 oygacha tanaffus bo‘lganda o‘z ish joyida 1-2 smena davomida, tanaffus 2 oydan 6 oygacha bo‘lganda 6 smenagacha dublyorlikdan o‘tishi kerak"
+    },
+    "1186b572-8166-4474-8a41-ebe7fdd26bb0": {
+      "correct_option_id": "0527690a-7fee-4275-b80d-5a2fb22ada20",
+      "prompt": "Tayyorlangan ish joyiga kelgusi kunlarda brigadani qayta ishga qo‘yish naryadda qanday rasmiylashtiriladi.",
+      "option_text": "navbatchi yoki tezkor ta’mirlash xodimlaridan bo‘lgan ishga qo‘yuvchi tomo-nidan amalga oshiriladigan brigadani ishga qo‘yish naryadning har ikkala nusxasida; ish raxbari yoki ish bajaruvchi (kuzatuvchi) tomonidan amalga oshiriladigan brigadani ishga qo‘yish -naryadning ish bajaruvchida (kuza-tuvchi) bo‘lgan nusxasida rasmiylashtiriladi"
+    },
+    "b7db9c13-e3b5-47da-aebd-e3b6241e6528": {
+      "correct_option_id": "9a4bf1c0-8639-4dbb-946e-09ab392f4756",
+      "prompt": "Ishga yaroqsiz deb topilgan himoya vositasining eski shtampi nima qilinadi?",
+      "option_text": ". qizil bo‘yoq bilan o‘chirib tashlanadi"
+    },
+    "06a0a4d8-7176-419f-b7fe-56d07341d50b": {
+      "correct_option_id": "cd4beda2-9c73-4adc-9ecd-1c5572d44c66",
+      "prompt": "Tezkor xodimlardan birini ikkinchisiga almashtirishga kim ruxsat berishi mumkin?",
+      "option_text": "grafikni tasdiqlagan tegishli ma’muriy-texnik xodimning ruxsati bi-lan"
+    },
+    "c4a2c813-ba81-480b-9ebc-0e05dbfa49de": {
+      "correct_option_id": "ecbb7417-0265-4874-9ac3-42b48f283ac6",
+      "prompt": "Ish joyini tayorlashga va ishga qo‘yishga ruxsat kimga va qan-day beriladi?",
+      "option_text": "ruxsat ish joyini tayorlashni amalga oshiruvchigi va xodimlarni ishga qo‘yuvchiga shaxsan, telefon, radio, chopar yoki oraliq podstansiya navbatchisi orqali berilishi mumkin"
     }
   },
   "theories": {
