@@ -3603,6 +3603,18 @@
       "option_text": "kuchlanishi 110 kV bo‘lgan tarmoqlar uchun havo tarmog‘i simidan yergacha bo‘lgan masofa aholi yashamaydigan joylarda 6 metr, yetib borish qiyin bo‘lgan hududlarda 5 metrni tashkil qilishi kerak",
       "verified": true,
       "note": "Verified from server response in Test 3"
+    },
+    "6d7d2d79-95a5-46f1-8851-16dce4a28d1a": {
+      "correct_option_id": "188b9cc6-4eca-47d7-8058-9251c8ea3639",
+      "prompt": "Test 3 Q 6d7d2d79-95a5-46f1-8851-16dce4a28d1a",
+      "option_text": "Option 188b9cc6-4eca-47d7-8058-9251c8ea3639"
+    },
+    "059719af-a80c-43d2-9fb2-b812eff57988": {
+      "correct_option_id": "824a0694-2da3-470f-ad93-0805a21f1902",
+      "prompt": "Montyorning saqlagich kamarlari va xavfsizlik arqonlari qanday sinovlardan o‘tkaziladi?",
+      "option_text": "statik va dinamik",
+      "verified": true,
+      "note": "Verified from server response in Test 3"
     }
   },
   "theories": {
