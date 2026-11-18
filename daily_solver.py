@@ -50,8 +50,20 @@ class DailyPlanSolver:
         except Exception as e:
             return {"error": str(e)}
 
+    def _ensure_token(self):
+        """Token muddati tugashidan oldin uni avtomatik yangilash"""
+        try:
+            from auth_manager import AuthManager
+            tok = self.client.base_client.token
+            if AuthManager.is_token_expired(tok, buffer_seconds=300):
+                new_tok = AuthManager.login()
+                self.client.set_token(new_tok)
+        except Exception:
+            pass
+
     def check_daily_plan_status(self) -> Dict[str, Any]:
         """Kunlik reja holatini tekshirish"""
+        self._ensure_token()
         try:
             plan = self.client.daily_plan.get_today()
             return {
@@ -70,6 +82,7 @@ class DailyPlanSolver:
         Bugungi 10 ta kunlik reja savollarini to'liq yechish.
         progress_callback(current, total, prompt, is_correct) orqali xabar uzatadi.
         """
+        self._ensure_token()
         plan = self.client.daily_plan.get_today()
         if not plan.is_plan_day:
             return {"status": "NO_PLAN_TODAY", "message": "Bugun dam olish kuni, kunlik reja belgilanmagan."}

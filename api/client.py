@@ -51,6 +51,15 @@ class BaseClient:
         url = f"{self.base_url}/{endpoint.lstrip('/')}"
         timeout = timeout or Config.TIMEOUT
 
+        # Oldindan tokenni tekshirish (agar tugashiga 5 daqiqa qolgan bo'lsa yangilash)
+        try:
+            from auth_manager import AuthManager
+            if AuthManager.is_token_expired(self.token, buffer_seconds=300):
+                new_token = AuthManager.login()
+                self.set_token(new_token)
+        except Exception:
+            pass
+
         for attempt in range(max_retries):
             try:
                 response = self.session.request(
@@ -62,7 +71,7 @@ class BaseClient:
                     **kwargs
                 )
 
-                if response.status_code == 401:
+                if response.status_code in [401, 403]:
                     # Token muddati tugagan bo'lsa, avtomatik login qilib yangi token olish
                     try:
                         from auth_manager import AuthManager
@@ -78,7 +87,7 @@ class BaseClient:
                             **kwargs
                         )
                     except Exception as e:
-                        raise APIError(401, f"Token eskirgan va login qilib bo'lmadi: {e}", response.text)
+                        raise APIError(response.status_code, f"Token eskirgan va avtomatik login qilib bo'lmadi: {e}", response.text)
 
                 try:
                     res_json = response.json()
