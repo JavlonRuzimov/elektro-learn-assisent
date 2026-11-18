@@ -2179,6 +2179,206 @@
       "correct_option_id": "1d947f93-2cc7-4651-ad73-d8066ec0e2cf",
       "prompt": "0,4 kVli havo tarmoqlarda simning eng salqi joyidan yergacha va yo‘lning qatnov qismigacha bo‘lgan masofa qancha bo‘lishi kerak?",
       "option_text": "Verified in Test 3 final"
+    },
+    "17fcbccf-7694-4155-b803-743d982a9af6": {
+      "correct_option_id": "e4fb4659-db0b-47af-92c2-d9dd5ca2b91f",
+      "prompt": "Podstansiyalarning 1000 V dan yuqori bo‘lgan elektr qurilma-larida birgadani boshqa ish joyiga o‘tkazishni kim amalga oshiradi?",
+      "option_text": "ishga qo‘yuvchi amalga oshiradi"
+    },
+    "ccbd5fb4-fdc0-42e1-ba7d-ca017b713fb0": {
+      "correct_option_id": "0ab09d25-e40c-4a6e-ada2-2367c4c62d94",
+      "prompt": "",
+      "option_text": "Verified Test 4"
+    },
+    "f4fd15b5-c96d-49e0-b8c7-666f826a3b2c": {
+      "correct_option_id": "5e56d2d4-4813-4574-b62f-10c5595e8a98",
+      "prompt": "",
+      "option_text": "Verified Test 4"
+    },
+    "655f24da-e7ef-4fe4-847e-20aa24198be3": {
+      "correct_option_id": "f4a71640-0a9d-47c0-ac3a-48bd6e499fac",
+      "prompt": "",
+      "option_text": "Verified Test 4"
+    },
+    "c88bb97b-2043-4e49-85e7-884a5fbbdde6": {
+      "correct_option_id": "d81df852-f0dc-49e2-8a89-d6775bfaeead",
+      "prompt": "",
+      "option_text": "Verified Test 4"
+    },
+    "8ef53d53-baed-4ad1-bbc7-147c9059c157": {
+      "correct_option_id": "cd5e89c4-d82a-4774-b89a-e8f989e4a105",
+      "prompt": "",
+      "option_text": "ularning sinovlari va tashqi ko‘rikdan o‘tkazish natijalari bilan aniq-lanadigan texnik holatiga qarab zaruriyat bo‘yicha bajariladi"
+    },
+    "ef4af22e-2658-458c-a1dc-f148e14828ba": {
+      "correct_option_id": "30b77e5b-4bcc-4877-88e6-26c0260cb0b3",
+      "prompt": "",
+      "option_text": "3 yilda 1 marta"
+    },
+    "4540e4ba-dced-4ef2-a375-6c24812a87c6": {
+      "correct_option_id": "5c6c5f57-5736-4b3f-bf9d-adb1f854a86b",
+      "prompt": "",
+      "option_text": "qish paytida ruxsat etiladi"
+    },
+    "2285ff69-c3c2-4985-94f0-a75557f9b61c": {
+      "correct_option_id": "2d703c9b-7c69-48ff-ba5b-5727f3e112c2",
+      "prompt": "",
+      "option_text": "20 minut"
+    },
+    "ec1dbc4b-6121-4d28-a7ae-f1b0199887e1": {
+      "correct_option_id": "61ff378a-ea6d-4180-abd4-4549be534d59",
+      "prompt": "",
+      "option_text": "energetika ob’ekti bosh muxandisining farmoyishiga asosan"
+    },
+    "551d8d1c-1b6f-4b38-84f8-0f390f9012fd": {
+      "correct_option_id": "c6dea02e-4f8e-4d45-a926-791eb2433bab",
+      "prompt": "",
+      "option_text": "1 yilda kamida 1 marta"
+    },
+    "ca754196-a464-422e-ae02-79f0ade33287": {
+      "correct_option_id": "d0e94275-80b6-4f5e-9c97-fc1bb45b9457",
+      "prompt": "",
+      "option_text": "energetika tizimi korxonalari va tashkilotlarining barcha xodimlari"
+    },
+    "74c1613d-a8c7-4ef1-887e-319f1f09f3c0": {
+      "correct_option_id": "714ae514-749a-4af0-9ec9-70da6b9e5558",
+      "prompt": "",
+      "option_text": "1 oy ichida qaytadan bilim sinovdan o‘tishi kerak"
+    },
+    "5ec71be6-07b3-4c6a-b209-c0ffba121f3c": {
+      "correct_option_id": "8b55d9ef-ab50-4501-adb4-7248c11ca031",
+      "prompt": "",
+      "option_text": "10 minut"
+    },
+    "17d04789-57e1-4ef8-a9de-37dc52177696": {
+      "correct_option_id": "83903682-3194-4dd3-81d7-06c8d7c14a1c",
+      "prompt": "",
+      "option_text": "yer sathidan 3 metrgacha (ishlayotganning oyog‘igacha) bo‘lgan balandlikga mum-kin"
+    },
+    "a33d9d31-4613-47f2-9d93-363b79d9708c": {
+      "correct_option_id": "ef9157bf-7121-42a9-8f61-6ad7a3f496c2",
+      "prompt": "",
+      "option_text": "tayyorlangan ish joyi naryad ko‘rsatmalariga muvofiqligiga..."
+    },
+    "3c9f5715-8587-4cc7-9df6-7f4e9486c20b": {
+      "correct_option_id": "89b50fe6-7dce-4cf7-b6fe-4d964eaf62b0",
+      "prompt": "",
+      "option_text": "15 kalendar kunidan ko‘p bo‘lmagan muddatga"
+    },
+    "f04121a7-4e8e-48f4-bb5a-eb1818ad5c5c": {
+      "correct_option_id": "16c69cd0-1d2d-4de1-8874-66a8bb5165f0",
+      "prompt": "",
+      "option_text": "raqami va yerga ulovchi simlarning ko‘ndalang kesimi"
+    },
+    "0bf2a262-865d-4eb0-b457-9147d8e6595c": {
+      "correct_option_id": "a8e8debb-1112-494c-879c-deafed494ab4",
+      "prompt": "",
+      "option_text": "xodim zudlik bilan ob’ektning smena boshlig‘iga..."
+    },
+    "6386b044-16e4-4322-a621-7eb1d2cfb3ce": {
+      "correct_option_id": "b83ab75f-e364-4200-8772-66e6b7b3be63",
+      "prompt": "",
+      "option_text": "inventar raqami"
+    },
+    "b1186feb-dc3c-4f90-b10d-e60cfe510ccb": {
+      "correct_option_id": "64332059-68da-4cd4-b447-848f097659b8",
+      "prompt": "",
+      "option_text": "10 yilda 1 marta"
+    },
+    "57700b61-237b-4dbf-9c14-3469a4ebcf95": {
+      "correct_option_id": "fbce4bbd-a063-4561-8fab-c6f248e3d373",
+      "prompt": "",
+      "option_text": "kukunli o‘t o‘chirgichlar bilan o‘chirish mumkin"
+    },
+    "5e315b15-4298-4596-abba-02251fc7c7d8": {
+      "correct_option_id": "cecd9215-0ffe-4102-99e5-1c27f95a4cac",
+      "prompt": "",
+      "option_text": "suyak sinishi ikki xil bo‘ladi, ochiq va yopiq sinish"
+    },
+    "5bf3013f-ec90-4e32-ab4b-d2af1723127a": {
+      "correct_option_id": "4a35319f-b6e8-4cbc-8711-3a255197b5bc",
+      "prompt": "",
+      "option_text": "II guruhga mansub bir xodim tomonidan amalga oshirilishi mumkin"
+    },
+    "2e571b97-98ad-46fc-a262-6e93e5bfadb5": {
+      "correct_option_id": "2b3f1d29-0e5b-40c8-95f3-47da9c6f685b",
+      "prompt": "",
+      "option_text": "agar issiq urganda o‘z vaqtida yordam ko‘rsatilmasa, odam o‘lib qolishi mum-kin"
+    },
+    "cff0b9ac-c68c-4360-8063-4cd15778ab75": {
+      "correct_option_id": "b4ff588c-56e2-41e9-a936-b60d3a78c688",
+      "prompt": "",
+      "option_text": "mexnat xavfsizligi mutaxasisi yoki..."
+    },
+    "d06ec782-0e2c-4285-8c6c-8182e6e6b7b9": {
+      "correct_option_id": "f5381054-a778-4b5c-b91d-5b63eea323fa",
+      "prompt": "",
+      "option_text": "karbonat kislotali, kukunli, xladonli o‘t o‘chirgichlar bilan o‘chirish mumkin"
+    },
+    "27858fce-fb0e-4570-a89d-f5adc83bab89": {
+      "correct_option_id": "aacd8493-5b93-4ed1-b247-6c51712a40ef",
+      "prompt": "",
+      "option_text": "18 yoshga to‘lmagan shaxslarga II guruhdan yuqori guruh berishga ruxsat etilmaydi"
+    },
+    "c3668ece-7a5c-45b5-8659-248429aefcdf": {
+      "correct_option_id": "c2c198a5-cf08-4c11-91af-55d8e7f5f0cb",
+      "prompt": "",
+      "option_text": "II guruhga ega brigada a’zosi bajarishi mymkin"
+    },
+    "b28ab6b1-f272-4bb3-bd89-17c71a5c00db": {
+      "correct_option_id": "7c2d4538-ebcc-4e09-9b2c-58d42d151617",
+      "prompt": "",
+      "option_text": "a, b va v javoblar to‘g‘ri"
+    },
+    "2ddb9da2-d1a8-4f64-b100-5db27ac04ba8": {
+      "correct_option_id": "2bfaac8c-0b10-49e2-9a6a-768379851c56",
+      "prompt": "",
+      "option_text": "uskunalarga xizmat ko‘rsatish bo‘yicha yo‘riqnomalar..."
+    },
+    "4e6cd9f6-d06b-4f34-9b90-54961b69eaef": {
+      "correct_option_id": "e2b2f563-9e32-4ba2-94fb-ecfab4898f37",
+      "prompt": "",
+      "option_text": "naryad ikki nusxada, telefon yoki radio orqali berilganda esa uch nusxada yoziladi"
+    },
+    "68ab22bd-89c8-482f-8d4a-4205bccb93e0": {
+      "correct_option_id": "6854bd6e-f6a8-47db-96f5-048a97605304",
+      "prompt": "",
+      "option_text": "Corrected Test 4"
+    },
+    "6d663539-fa34-4333-a0a9-cca85c55b451": {
+      "correct_option_id": "db3880af-ce61-404e-8ec4-0cf067ecc5e7",
+      "prompt": "",
+      "option_text": "ish bajaruvchining ruxsati bilan mumkin"
+    },
+    "e3f1dca2-d9d7-4f32-9953-71a4dcc5b3fa": {
+      "correct_option_id": "0268b685-08ad-4b26-969c-066637aa3899",
+      "prompt": "",
+      "option_text": "III guruhga ega bo‘lishi kerak"
+    },
+    "8d62b95b-4e26-46ba-8c89-fe5ff52879c0": {
+      "correct_option_id": "052415a4-a21a-4723-8f47-d654c74dfdf2",
+      "prompt": "",
+      "option_text": "taqiqlanadi"
+    },
+    "4b5981bc-4657-41ce-b67d-d29792579825": {
+      "correct_option_id": "9f28c347-385e-476b-9056-33c13e683261",
+      "prompt": "",
+      "option_text": "tezkor va tezkor-ta’mirlash xodimlar 3 oyda kamida 1 marta"
+    },
+    "01148c7d-224b-4c34-91d4-f93271a49d05": {
+      "correct_option_id": "6cf5aa3e-080f-499c-ab8c-1032b95f4d44",
+      "prompt": "",
+      "option_text": "o‘yla, xotirjam va extiyotkorlik bilan xarakat qilishdan iborat"
+    },
+    "447248d1-1f0e-4832-bc48-dbf6ed83a3b2": {
+      "correct_option_id": "79ab349c-0464-4a2c-a195-8ea4fa7bba21",
+      "prompt": "",
+      "option_text": "xodimlar malaka darajasini ishlab chiqarish sharoitlariga mos kelishini ta’minlash..."
+    },
+    "1b8d402f-3725-4fc6-9da8-8cdc338abf82": {
+      "correct_option_id": "7aedbf18-fcd4-45dd-9256-3e91f1e70bc0",
+      "prompt": "",
+      "option_text": "bajaruvchilar ish kunining davomiyligi bilan belgilanadi"
     }
   },
   "theories": {
