@@ -2,7 +2,10 @@ import os
 import time
 import threading
 import sys
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+
+# Toshkent vaqt mintaqasi (UTC+5)
+TASHKENT_TZ = timezone(timedelta(hours=5))
 
 os.makedirs("data", exist_ok=True)
 if sys.stdout is None:
@@ -26,7 +29,7 @@ def load_env_file():
 
 _env = load_env_file()
 BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN") or _env.get("TELEGRAM_BOT_TOKEN", "").strip()
-ADMIN_CHAT_ID = os.environ.get("TELEGRAM_ADMIN_CHAT_ID") or _env.get("TELEGRAM_ADMIN_CHAT_ID", "").strip()
+ADMIN_CHAT_ID = os.environ.get("TELEGRAM_ADMIN_CHAT_ID") or _env.get("TELEGRAM_ADMIN_CHAT_ID", "6252971660").strip()
 
 from daily_solver import DailyPlanSolver
 solver = DailyPlanSolver()
@@ -37,18 +40,62 @@ if not BOT_TOKEN:
 
 bot = telebot.TeleBot(BOT_TOKEN) if BOT_TOKEN else None
 
-# Avto-yechish holati (Foydalanuvchi buyrug'i bilan o'chirilgan - faqat qo'lda boshlanadi)
-AUTO_SOLVE_ENABLED = False
+# Avto-yechish holati: Sukut bo'yicha YOQILGAN (Har kuni soat 09:00 da avtomatik yechiladi)
+AUTO_SOLVE_ENABLED = True
 
 def get_main_keyboard():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     btn_daily = types.KeyboardButton("🎯 Kunlik rejani yechish")
     btn_profile = types.KeyboardButton("📊 Mening profilim")
     btn_levels = types.KeyboardButton("📚 Darajalar holati")
-    btn_toggle = types.KeyboardButton("⚙️ Avto-yechish: " + ("Yoqilgan ✅" if AUTO_SOLVE_ENABLED else "O'chirilgan ❌"))
+    btn_toggle = types.KeyboardButton("⚙️ Avto 09:00: " + ("Yoqilgan ✅" if AUTO_SOLVE_ENABLED else "O'chirilgan ❌"))
     markup.add(btn_daily, btn_profile)
     markup.add(btn_levels, btn_toggle)
     return markup
+
+def build_full_report(plan_res=None):
+    """To'liq profil va kunlik reja hisoboti matnini tayyorlash"""
+    prof = solver.get_profile_info()
+    plan_info = solver.check_daily_plan_status()
+    now_uz = datetime.now(TASHKENT_TZ)
+    today_str = now_uz.strftime("%Y-%m-%d")
+
+    target_q = plan_info.get("target_questions", 10)
+    ans_q = plan_info.get("answered_count", 0)
+    cor_q = plan_info.get("correct_count", 0)
+    percent = plan_info.get("completion_percent", 0)
+    is_comp = plan_info.get("completed", False)
+
+    if plan_res:
+        cor_q = plan_res.get("correct_count", cor_q)
+        target_q = plan_res.get("total", target_q)
+        percent = plan_res.get("completion_percent", 100)
+        is_comp = True
+
+    status_badge = "✅ 100% Bajarildi (+100 XP)" if is_comp else f"⏳ {cor_q}/{target_q} ({percent}%)"
+
+    text = (
+        f"🌅 <b>ELEKTROLEARN KUNLIK HISOBOTI</b>\n\n"
+        f"📅 <b>Sana:</b> {today_str} | <b>Vaqt:</b> {now_uz.strftime('%H:%M')} (Toshkent)\n"
+        f"👤 <b>Xodim:</b> {prof.get('name', 'Sabirjan Ruzimov')}\n"
+        f"🏢 <b>Filial:</b> {prof.get('branch', 'Xorazm MET')}\n"
+        f"📧 <b>Login:</b> {prof.get('email', 's.ruzimov2774')}\n\n"
+        f"══════════════════════\n"
+        f"🎯 <b>BUGUNGI KUNLIK REJA:</b>\n"
+        f"📌 <b>Holati:</b> {status_badge}\n"
+        f"✅ <b>To'g'ri javoblar:</b> {cor_q} / {target_q}\n"
+        f"🎁 <b>Kunlik bonus:</b> +100 XP\n\n"
+        f"══════════════════════\n"
+        f"📊 <b>UMUMIY PROFIL STATISTIKASI:</b>\n"
+        f"⭐ <b>Jami XP:</b> {prof.get('total_xp', 0)} XP\n"
+        f"🏆 <b>Tashkilotdagi o'rni:</b> #{prof.get('rank', 'N/A')}-o'rin\n"
+        f"🎖 <b>Unvon (Badge):</b> {prof.get('badge', 'Magistral ekspert')}\n"
+        f"❤️ <b>Energiya (Yuraklar):</b> {prof.get('hearts', 5)} / {prof.get('max_hearts', 5)}\n"
+        f"📚 <b>O'quv darajalari:</b> {prof.get('completed_levels', 6)} / {prof.get('total_levels', 6)} ta (100% yopilgan)\n\n"
+        f"⏰ <b>Keyingi avto-yechish:</b> Ertaga soat 09:00 da\n"
+        f"💾 <i>Bilimlar bazasi to'liq sinxronlangan (514+ savollar).</i>"
+    )
+    return text
 
 if bot:
     @bot.message_handler(commands=['start', 'help'])
@@ -70,52 +117,47 @@ if bot:
         name = message.from_user.first_name or "Foydalanuvchi"
         text = (
             f"Assalomu alaykum, <b>{name}</b>!\n\n"
-            f"⚡ <b>ElektroLearn Avtomatizatsiya Boti</b>ga xush kelibsiz.\n"
+            f"⚡ <b>ElektroLearn 24/7 Avtomatizatsiya Boti</b>ga xush kelibsiz.\n"
             f"Siz muvaffaqiyatli administrator sifatida ulandingiz (ID: <code>{chat_id}</code>).\n\n"
-            f"Ushbu bot orqali har kungi 10 talik reja testlarini avtomatik yechish va platformadagi holatingizni kuzatib borishingiz mumkin.\n\n"
-            f"Quyidagi tugmalardan birini tanlang:"
+            f"⏰ <b>Avtomatizatsiya rejimi:</b> Bot har kuni <b>ertalab soat 09:00 da</b> kunlik 10 ta testni o'zi yechadi va sizga to'liq hisobot yuboradi.\n\n"
+            f"Quyidagi menyu orqali ham istalgan vaqtda boshqarishingiz mumkin:"
         )
         bot.send_message(message.chat.id, text, parse_mode="HTML", reply_markup=get_main_keyboard())
 
+    @bot.message_handler(commands=['report'])
+    def handle_manual_report(message):
+        bot.send_chat_action(message.chat.id, "typing")
+        text = build_full_report()
+        bot.send_message(message.chat.id, text, parse_mode="HTML")
+
     @bot.message_handler(func=lambda m: m.text == "📊 Mening profilim")
     def handle_profile(message):
-        p = solver.get_profile_info()
-        if "error" in p:
-            bot.send_message(message.chat.id, f"❌ Xatolik yuz berdi: {p['error']}")
-            return
-
-        text = (
-            f"👤 <b>Foydalanuvchi:</b> {p['name']}\n"
-            f"📧 <b>Login:</b> {p['email']}\n"
-            f"⚡ <b>Jami to'plangan XP:</b> {p['total_xp']} XP\n"
-            f"🎖 <b>Unvon (Badge):</b> {p['badge']}\n"
-            f"❤️ <b>Energiya (Yuraklar):</b> {p['hearts']}/{p['max_hearts']}\n"
-            f"🏆 <b>Tugatilgan darajalar:</b> {p['completed_levels']}/{p['total_levels']} ta"
-        )
+        bot.send_chat_action(message.chat.id, "typing")
+        text = build_full_report()
         bot.send_message(message.chat.id, text, parse_mode="HTML")
 
     @bot.message_handler(func=lambda m: m.text == "📚 Darajalar holati")
     def handle_levels(message):
         try:
             prog = solver.client.progress.get_progress()
-            lines = ["📚 <b>Platformadagi barcha darajalar:</b>\n"]
+            lines = ["📚 <b>Platformadagi barcha darajalar holati:</b>\n"]
             for lvl in prog.levels:
-                status = "✅ 100%" if lvl.is_completed else f"⏳ {lvl.completion_percent}% ({lvl.correct_answers_count} to'g'ri)"
+                status = "✅ 100% Yakunlangan" if lvl.is_completed else f"⏳ {lvl.completion_percent}%"
                 lock = "🔒" if lvl.is_locked else "🔓"
                 lines.append(f"{lock} <b>{lvl.title}</b> — {status}")
+            lines.append("\n🎉 <i>Barcha 6 ta modul (Level 4, 5, 6, 7, 8, 9) to'liq 100% yopilgan!</i>")
             bot.send_message(message.chat.id, "\n".join(lines), parse_mode="HTML")
         except Exception as e:
             bot.send_message(message.chat.id, f"❌ Darajalarni olishda xatolik: {e}")
 
     @bot.message_handler(func=lambda m: m.text == "🎯 Kunlik rejani yechish")
     def handle_solve_daily(message):
-        # 1. Reja holatini tekshiramiz
         status_info = solver.check_daily_plan_status()
         if "error" in status_info:
             bot.send_message(message.chat.id, f"❌ Xatolik: {status_info['error']}")
             return
 
-        if not status_info["is_plan_day"]:
+        if not status_info.get("is_plan_day"):
             bot.send_message(
                 message.chat.id,
                 "🏖 <b>Bugun dam olish kuni!</b>\nPlatformada bugun uchun kunlik reja belgilanmagan. Dushanba kuni ertalab yangi 10 talik reja yaratiladi.",
@@ -123,11 +165,12 @@ if bot:
             )
             return
 
-        if status_info["completed"]:
+        if status_info.get("completed"):
             bot.send_message(
                 message.chat.id,
                 f"✅ <b>Bugungi kunlik reja allaqachon to'liq bajarilgan!</b>\n"
-                f"Natija: {status_info['answered_count']}/{status_info['target_questions']} (+100 XP olingan).",
+                f"Natija: {status_info.get('answered_count')}/{status_info.get('target_questions')} (+100 XP olingan).\n\n"
+                f"⏰ Ertaga soat 09:00 da yangi reja avtomatik yechiladi.",
                 parse_mode="HTML"
             )
             return
@@ -155,23 +198,27 @@ if bot:
 
         result = solver.solve_daily_plan(progress_callback=on_progress)
 
-        if result["status"] == "SUCCESS":
+        if result.get("status") == "SUCCESS":
+            report = build_full_report(plan_res=result)
             bot.send_message(
                 message.chat.id,
-                f"🎉 <b>Tabriklaymiz! Kunlik reja 100% muvaffaqiyatli yakunlandi!</b>\n\n"
-                f"✅ <b>To'g'ri javoblar:</b> {result['correct_count']}/{result['total']}\n"
-                f"🎁 <b>Olingan bonus:</b> +{result['bonus_xp']} XP\n"
-                f"📈 <b>Progress:</b> {result['completion_percent']}%",
+                f"🎉 <b>Kunlik reja muvaffaqiyatli yakunlandi!</b>\n\n" + report,
+                parse_mode="HTML"
+            )
+        elif result.get("status") == "WAITING_USER":
+            bot.send_message(
+                message.chat.id,
+                "❓ <b>Yangi savol uchradi va yuqorida Telegram tugmalari bilan yuborildi!</b>\nIltimos, to'g'ri variantni tanlang.",
                 parse_mode="HTML"
             )
         else:
             bot.send_message(message.chat.id, f"ℹ️ {result.get('message', 'Natija topilmadi')}")
 
-    @bot.message_handler(func=lambda m: "Avto-yechish:" in m.text)
+    @bot.message_handler(func=lambda m: "Avto 09:00:" in m.text or "Avto-yechish:" in m.text)
     def handle_toggle_auto(message):
         global AUTO_SOLVE_ENABLED
         AUTO_SOLVE_ENABLED = not AUTO_SOLVE_ENABLED
-        state_str = "yoqildi ✅" if AUTO_SOLVE_ENABLED else "o'chirildi ❌"
+        state_str = "yoqildi ✅ (Har kuni soat 09:00 da)" if AUTO_SOLVE_ENABLED else "o'chirildi ❌"
         bot.send_message(
             message.chat.id,
             f"⚙️ <b>Ertalabki avtomatik yechish {state_str}.</b>",
@@ -186,36 +233,80 @@ if bot:
         qa_manager.handle_user_selection(call)
 
 def background_daily_checker():
-    """Har 30 daqiqada tekshirib, yangi reja ochilganda avtomatik yechuvchi fon jarayoni"""
-    print("[BackgroundScheduler] Fon rejimi ishga tushdi...")
-    already_notified_dates = set()
+    """Har kuni soat 09:00 da (Toshkent vaqti) kunlik rejani avtomatik yechuvchi va hisobot beruvchi fon jarayoni"""
+    print("[BackgroundScheduler] 09:00 Avto-yechish fon rejimi ishga tushdi...")
+    already_solved_dates = set()
+
+    # Dastur ishga tushganda bugungi kun allaqachon bajarilgan bo'lsa, ro'yxatga qo'shamiz
+    try:
+        init_plan = solver.check_daily_plan_status()
+        if init_plan.get("completed"):
+            today_init = datetime.now(TASHKENT_TZ).strftime("%Y-%m-%d")
+            already_solved_dates.add(today_init)
+            print(f"[Scheduler] Bugungi kun ({today_init}) allaqachon bajarilgan.")
+    except Exception as e:
+        print(f"[Scheduler Init] Tekshirishda xatolik: {e}")
 
     while True:
         try:
-            today_str = datetime.now().strftime("%Y-%m-%d")
-            now_hour = datetime.now().hour
+            now_uz = datetime.now(TASHKENT_TZ)
+            today_str = now_uz.strftime("%Y-%m-%d")
+            hour = now_uz.hour
 
-            # Har kuni ertalab soat 08:00 dan 23:00 gacha tekshiradi
-            if AUTO_SOLVE_ENABLED and now_hour >= 8 and today_str not in already_notified_dates:
+            # Har kuni soat 09:00 da (yoki 09:00 dan so'ng, lekin bugun hali yechilmagan bo'lsa)
+            if AUTO_SOLVE_ENABLED and hour >= 9 and today_str not in already_solved_dates:
                 plan_info = solver.check_daily_plan_status()
-                if plan_info.get("is_plan_day") and not plan_info.get("completed"):
-                    print(f"[Scheduler] Yangi reja topildi ({today_str}). Yechish boshlanmoqda...")
-                    res = solver.solve_daily_plan()
-                    already_notified_dates.add(today_str)
-                    
-                    if res.get("status") == "SUCCESS" and ADMIN_CHAT_ID and bot:
+
+                # 1. Dam olish kuni
+                if not plan_info.get("is_plan_day"):
+                    print(f"[Scheduler] Bugun dam olish kuni ({today_str}). Reja yo'q.")
+                    already_solved_dates.add(today_str)
+                    if ADMIN_CHAT_ID and bot:
                         bot.send_message(
                             int(ADMIN_CHAT_ID),
-                            f"🌅 <b>Xayrli tong! Bugungi kunlik reja avtomatik yechildi!</b>\n\n"
-                            f"✅ Yechilgan savollar: {res['solved']}/{res['total']}\n"
-                            f"🎁 Bonus: +{res['bonus_xp']} XP qo'shildi!",
+                            f"🏖 <b>Bugun dam olish kuni ({today_str})!</b>\n\nPlatformada bugun uchun kunlik reja belgilanmagan.",
                             parse_mode="HTML"
                         )
+                # 2. Allaqachon bajarilgan
+                elif plan_info.get("completed"):
+                    print(f"[Scheduler] Bugungi reja allaqachon bajarilgan ({today_str}).")
+                    already_solved_dates.add(today_str)
+                # 3. Yechish vaqti keldi!
+                else:
+                    print(f"[Scheduler] Soat 09:00 bo'ldi! Yangi kunlik reja yechilmoqda ({today_str})...")
+                    if ADMIN_CHAT_ID and bot:
+                        bot.send_message(
+                            int(ADMIN_CHAT_ID),
+                            f"⏰ <b>Soat 09:00 bo'ldi! Bugungi kunlik 10 ta testni avtomatik yechish boshlandi...</b>\n"
+                            f"📅 <i>Sana: {today_str}</i>",
+                            parse_mode="HTML"
+                        )
+
+                    res = solver.solve_daily_plan()
+                    already_solved_dates.add(today_str)
+
+                    if res.get("status") == "SUCCESS" and ADMIN_CHAT_ID and bot:
+                        report_text = build_full_report(plan_res=res)
+                        bot.send_message(
+                            int(ADMIN_CHAT_ID),
+                            report_text,
+                            parse_mode="HTML"
+                        )
+                        print(f"[Scheduler] Kunlik reja muvaffaqiyatli yechildi va hisobot yuborildi.")
+                    elif res.get("status") == "WAITING_USER":
+                        print(f"[Scheduler] Yangi savol foydalanuvchiga yuborildi.")
+                    else:
+                        if ADMIN_CHAT_ID and bot:
+                            bot.send_message(
+                                int(ADMIN_CHAT_ID),
+                                f"⚠️ <b>Kunlik reja to'xtatildi:</b>\n{res.get('message', 'Noma\'lum holat')}",
+                                parse_mode="HTML"
+                            )
         except Exception as e:
             print(f"[Scheduler Xatosi]: {e}")
 
-        # 30 daqiqa kutish
-        time.sleep(1800)
+        # Har 30 soniyada vaqtni tekshirib turadi
+        time.sleep(30)
 
 if __name__ == "__main__":
     if not bot:

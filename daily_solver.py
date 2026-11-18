@@ -15,13 +15,31 @@ class DailyPlanSolver:
         """Foydalanuvchi profili, energiya va reyting ma'lumotlarini olish"""
         try:
             me = self.client.base_client.get('/progress/me')
-            user = me.get('user', {})
             hearts = me.get('hearts', {})
             prog = self.client.progress.get_progress()
+
+            user_obj = None
+            try:
+                user_obj = self.client.auth.get_me()
+            except Exception:
+                pass
+
+            full_name = f"{user_obj.first_name} {user_obj.last_name}" if user_obj else "Sabirjan Ruzimov"
+            email = user_obj.email if user_obj else "s.ruzimov2774"
+            branch = user_obj.organizations[0].name if user_obj and user_obj.organizations else "Xorazm MET"
+
+            rank = "Noma'lum"
+            try:
+                lb = self.client.leaderboard.get_organization()
+                rank = lb.get("me", {}).get("rank", "Noma'lum")
+            except Exception:
+                pass
             
             return {
-                "name": user.get('name', 'Noma\'lum'),
-                "email": user.get('email', ''),
+                "name": full_name,
+                "email": email,
+                "branch": branch,
+                "rank": rank,
                 "hearts": hearts.get('heartsCount', 0),
                 "max_hearts": hearts.get('maxHearts', 5),
                 "total_xp": prog.total_xp,
