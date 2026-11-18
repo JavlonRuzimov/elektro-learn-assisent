@@ -176,14 +176,56 @@ class TelegramQAManager:
                 f"⚡ <b>Olingan XP:</b> +{earned_xp} XP\n"
                 f"❤️ <b>Hozirgi yuraklar:</b> {hearts_count}/5"
             )
+            # Agar kunlik reja bo'lsa, qolgan savollarni yechishni avtomatik davom ettirish
+            if target_q.get("source") == "DAILY_PLAN":
+                def continue_daily_solve():
+                    time.sleep(1.5)
+                    try:
+                        from daily_solver import DailyPlanSolver
+                        solver = DailyPlanSolver()
+                        res = solver.solve_daily_plan()
+                        if res.get("status") == "SUCCESS":
+                            self.bot.send_message(
+                                call.message.chat.id,
+                                f"🎉 <b>Kunlik reja to'liq 100% yakunlandi!</b>\n\n"
+                                f"✅ To'g'ri: {res['correct_count']}/{res['total']}\n"
+                                f"🎁 Bonus: +{res['bonus_xp']} XP",
+                                parse_mode="HTML"
+                            )
+                    except Exception as ex:
+                        print(f"[TelegramQA] continue_daily_solve error: {ex}")
+
+                threading.Thread(target=continue_daily_solve, daemon=True).start()
         else:
+            correct_id = res.get("correctOptionId")
+            correct_text = ""
+            if correct_id:
+                for opt in target_q.get("options", []):
+                    if opt.get("id") == correct_id:
+                        correct_text = opt.get("optionText") or opt.get("text", "")
+                        break
+                with open("data/knowledge_base.json", "r", encoding="utf-8") as f:
+                    kb = json.load(f)
+                kb.setdefault("questions", {})[target_qid] = {
+                    "correct_option_id": correct_id,
+                    "correctOptionId": correct_id,
+                    "prompt": target_q.get("prompt", ""),
+                    "option_text": correct_text,
+                    "verified": True,
+                    "source": "SERVER_REVEALED",
+                    "note": target_q.get("prompt", "")[:100]
+                }
+                with open("data/knowledge_base.json", "w", encoding="utf-8") as f:
+                    json.dump(kb, f, indent=2, ensure_ascii=False)
+                print(f"[TelegramQA] Serverning to'g'ri javobi KB ga saqlandi: {correct_id}")
+
             result_text = (
                 f"❌ <b>NOTO'G'RI JAVOB BO'LDI!</b> ⚠️\n\n"
                 f"📝 <b>Savol:</b> {target_q['prompt']}\n"
-                f"⚠️ <b>Tanlangan javob:</b> {selected_text}\n\n"
-                f"🛑 <b>Qat'iy qoidaga ko'ra test to'xtatildi!</b>\n"
-                f"❤️ <b>Qolgan yuraklar:</b> {hearts_count}/5\n"
-                f"<i>(Iltimos, keyingi harakatni tanlang yoki tiklanishni kuting)</i>"
+                f"⚠️ <b>Siz tanlagan javob:</b> {selected_text}\n"
+                f"✅ <b>To'g'ri javob (Server):</b> {correct_text or 'Aniqlanmadi'}\n\n"
+                f"💾 <i>Serverdagi to'g'ri javob bazaga saqlab qo'yildi.</i>\n"
+                f"❤️ <b>Qolgan yuraklar:</b> {hearts_count}/5"
             )
 
         # Update Telegram message

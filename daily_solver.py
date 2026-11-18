@@ -76,11 +76,25 @@ class DailyPlanSolver:
 
             opt_id, source_reason = choose_answer(question)
             if not opt_id:
-                return {
-                    "status": "STOPPED",
-                    "message": f"Savol bazada topilmadi: '{question.prompt[:70]}...'. Taxmin qilish taqiqlangani sababli to'xtatildi.",
-                    "details": results
-                }
+                try:
+                    from agent.telegram_qa import qa_manager
+                    q_dict = {
+                        "id": question.id,
+                        "prompt": question.prompt,
+                        "options": [{"id": o.id, "optionText": o.option_text} for o in question.options]
+                    }
+                    qa_manager.send_question(q_dict, theory_title="Kunlik reja", source="DAILY_PLAN")
+                    return {
+                        "status": "WAITING_USER",
+                        "message": f"❓ <b>Yangi savol bazada topilmadi va Telegramingizga yuborildi!</b>\n\nIltimos, Telegramda to'g'ri variantni tanlang — javobingiz to'g'ri bo'lsa, avtomatik bazaga qo'shiladi va reja davom etadi.",
+                        "details": results
+                    }
+                except Exception as e:
+                    return {
+                        "status": "STOPPED",
+                        "message": f"Savol bazada topilmadi: '{question.prompt[:70]}...'. Telegramga yuborishda xatolik: {e}",
+                        "details": results
+                    }
             opt_text = next((o.option_text for o in question.options if o.id == opt_id), opt_id)
 
             time.sleep(1.5)
