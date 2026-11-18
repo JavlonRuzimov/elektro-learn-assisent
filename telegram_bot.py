@@ -34,6 +34,9 @@ ADMIN_CHAT_ID = os.environ.get("TELEGRAM_ADMIN_CHAT_ID") or _env.get("TELEGRAM_A
 from daily_solver import DailyPlanSolver
 solver = DailyPlanSolver()
 
+from agent.exam_monitor import ExamMonitor
+exam_monitor = ExamMonitor(solver.client)
+
 if not BOT_TOKEN:
     print("[!] DIQQAT: .env faylida 'TELEGRAM_BOT_TOKEN' topilmadi!")
     print("Iltimos, @BotFather dan olingan bot tokenini .env fayliga kiriting.")
@@ -49,10 +52,11 @@ def get_main_keyboard():
     btn_profile = types.KeyboardButton("📊 Mening profilim")
     btn_search = types.KeyboardButton("🔍 Savol qidirish")
     btn_levels = types.KeyboardButton("📚 Darajalar holati")
+    btn_exam = types.KeyboardButton("📝 Imtihonlar")
     btn_toggle = types.KeyboardButton("⚙️ Avto 09:00: " + ("Yoqilgan ✅" if AUTO_SOLVE_ENABLED else "O'chirilgan ❌"))
     markup.add(btn_daily, btn_profile)
     markup.add(btn_search, btn_levels)
-    markup.add(btn_toggle)
+    markup.add(btn_exam, btn_toggle)
     return markup
 
 def build_full_report(plan_res=None):
@@ -273,6 +277,27 @@ if bot:
         lines.append("💾 <i>Manba: Rasmiy qoidalar va tasdiqlangan bilimlar bazasi.</i>")
         bot.send_message(message.chat.id, "\n".join(lines), parse_mode="HTML")
 
+    @bot.message_handler(func=lambda m: m.text in ["📝 Imtihonlar", "/exam", "Imtihonlar"])
+    def handle_exam_check(message):
+        bot.send_chat_action(message.chat.id, "typing")
+        solver._ensure_token()
+        status = exam_monitor.get_current_status()
+        if status.get("has_exam") and status.get("exam"):
+            bot.send_message(
+                message.chat.id,
+                exam_monitor.format_exam_alert(status["exam"]),
+                parse_mode="HTML"
+            )
+        else:
+            bot.send_message(
+                message.chat.id,
+                "📝 <b>RASMIY MALAKA IMTIHONLARI</b>\n\n"
+                "ℹ️ <i>Ayni paytda sizga tayinlangan yangi yoki faol imtihon mavjud emas.</i>\n\n"
+                "✅ Barcha navbatdagi sinovlar kutish rejimida.\n"
+                "🔔 Agar «O‘zbekiston MET» AJ tomonidan yangi malaka/attestatsiya imtihoni e'lon qilinsa, bot darhol sizga Telegram orqali ogohlantirish yuboradi!",
+                parse_mode="HTML"
+            )
+
     from agent.telegram_qa import qa_manager
 
     @bot.callback_query_handler(func=lambda call: call.data.startswith("ans:"))
@@ -280,9 +305,10 @@ if bot:
         qa_manager.handle_user_selection(call)
 
 def background_daily_checker():
-    """Har kuni soat 09:00 da (Toshkent vaqti) kunlik rejani avtomatik yechuvchi va hisobot beruvchi fon jarayoni"""
-    print("[BackgroundScheduler] 09:00 Avto-yechish fon rejimi ishga tushdi...")
+    """Har kuni soat 09:00 da (Toshkent vaqti) kunlik rejani avtomatik yechuvchi va har 15 daqiqada yangi imtihonlarni kuzatuvchi fon jarayoni"""
+    print("[BackgroundScheduler] 09:00 Avto-yechish va Imtihon monitori ishga tushdi...")
     already_solved_dates = set()
+    last_exam_check = 0
 
     # Dastur ishga tushganda bugungi kun allaqachon bajarilgan bo'lsa, ro'yxatga qo'shamiz
     try:
@@ -300,7 +326,20 @@ def background_daily_checker():
             today_str = now_uz.strftime("%Y-%m-%d")
             hour = now_uz.hour
 
-            # Har kuni soat 09:00 da (yoki 09:00 dan so'ng, lekin bugun hali yechilmagan bo'lsa)
+            # 1. Har 15 daqiqada (900 soniya) rasmiy yangi imtihonlarni tekshirish
+            if time.time() - last_exam_check >= 900:
+                last_exam_check = time.time()
+                try:
+                    solver._ensure_token()
+                    new_exam = exam_monitor.check_for_new_exam()
+                    if new_exam and ADMIN_CHAT_ID and bot:
+                        alert_msg = exam_monitor.format_exam_alert(new_exam)
+                        bot.send_message(int(ADMIN_CHAT_ID), alert_msg, parse_mode="HTML")
+                        print(f"[ExamMonitor] ⚠️ Yangi imtihon e'lon qilindi va xabar yuborildi: {new_exam}")
+                except Exception as ex_err:
+                    print(f"[ExamMonitor Xatosi]: {ex_err}")
+
+            # 2. Har kuni soat 09:00 da (yoki 09:00 dan so'ng, lekin bugun hali yechilmagan bo'lsa)
             if AUTO_SOLVE_ENABLED and hour >= 9 and today_str not in already_solved_dates:
                 plan_info = solver.check_daily_plan_status()
 
