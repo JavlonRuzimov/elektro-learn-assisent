@@ -11,7 +11,7 @@ kb = KnowledgeBase()
 # Complete final mapping for the last 5 questions of Test 3
 FINAL_TEST3 = {
     # 1. 0,4 kVgacha kuchlanish ostida bo‘lgan uskunalardagi yong‘inni nima bilan o‘chirishga ruxsat beriladi?
-    "b999ec0a-4237-404b-bb4e-3366343593d9": "823cb5ec-8aef-4e97-8f66-ebe18dfb13c0",
+    "b999ec0a-4237-404b-bb4e-3366343593d9": "ab71ecc3-fa4c-4ec2-9e1e-ad45bf30e2aa",
     # 2. Tok o‘tkazuvchi qismlarga yerga ulagichni qachon o‘rnatish kerak?
     "8daf7541-5062-4542-a03b-e4c148094c28": "36f1a846-549d-40bb-b48b-51ab4092758d",
     # 3. Ishida tanaffus bo‘lgan ta’mirlash va sozlash xodimlariga qachon mustaqil ishlashga ruxsat beriladi?
