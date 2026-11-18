@@ -47,10 +47,12 @@ def get_main_keyboard():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     btn_daily = types.KeyboardButton("🎯 Kunlik rejani yechish")
     btn_profile = types.KeyboardButton("📊 Mening profilim")
+    btn_search = types.KeyboardButton("🔍 Savol qidirish")
     btn_levels = types.KeyboardButton("📚 Darajalar holati")
     btn_toggle = types.KeyboardButton("⚙️ Avto 09:00: " + ("Yoqilgan ✅" if AUTO_SOLVE_ENABLED else "O'chirilgan ❌"))
     markup.add(btn_daily, btn_profile)
-    markup.add(btn_levels, btn_toggle)
+    markup.add(btn_search, btn_levels)
+    markup.add(btn_toggle)
     return markup
 
 def build_full_report(plan_res=None):
@@ -225,6 +227,51 @@ if bot:
             parse_mode="HTML",
             reply_markup=get_main_keyboard()
         )
+
+    from agent.kb_search import KBSearcher
+    searcher = KBSearcher()
+
+    @bot.message_handler(func=lambda m: m.text == "🔍 Savol qidirish")
+    def handle_search_prompt(message):
+        bot.send_message(
+            message.chat.id,
+            "🔍 <b>Bilimlar bazasidan qidirish (Shpargalka)</b>\n\n"
+            "Istalgan savol matnini yoki kalit so'zlarni yozib yuboring (masalan: <i>\"naryad muddati\"</i>, <i>\"o't o'chirgich\"</i>, <i>\"yerga ulagich\"</i>, <i>\"daraxt aganasa\"</i>).\n\n"
+            "Men 514+ ta savollar bazasidan to'g'ri javobni bir zumda topib beraman!",
+            parse_mode="HTML"
+        )
+
+    @bot.message_handler(func=lambda m: m.text and not m.text.startswith("/") and m.text not in [
+        "🎯 Kunlik rejani yechish", "📊 Mening profilim", "📚 Darajalar holati", "🔍 Savol qidirish"
+    ] and not m.text.startswith("⚙️"))
+    def handle_general_search(message):
+        query = message.text.strip()
+        if len(query) < 2:
+            return
+
+        bot.send_chat_action(message.chat.id, "typing")
+        results = searcher.search(query, limit=3)
+
+        if not results:
+            bot.send_message(
+                message.chat.id,
+                f"❌ <b>«{query}»</b> bo'yicha bazadan savol topilmadi.\n\n"
+                f"💡 <i>Maslahat: So'zlarni soddaroq qilib qidirib ko'ring (masalan: «naryad», «saqlagich», «izolyatsiya»).</i>",
+                parse_mode="HTML"
+            )
+            return
+
+        lines = [f"🔍 <b>«{query}» bo'yicha topilgan natijalar ({len(results)} ta):</b>\n"]
+        emojis = ["1️⃣", "2️⃣", "3️⃣"]
+        for i, r in enumerate(results):
+            em = emojis[i] if i < len(emojis) else f"[{i+1}]"
+            lines.append(
+                f"{em} <b>Savol:</b>\n<i>{r['prompt']}</i>\n\n"
+                f"✅ <b>To'g'ri javob:</b>\n👉 <b>{r['answer']}</b>\n"
+            )
+
+        lines.append("💾 <i>Manba: Rasmiy qoidalar va tasdiqlangan bilimlar bazasi.</i>")
+        bot.send_message(message.chat.id, "\n".join(lines), parse_mode="HTML")
 
     from agent.telegram_qa import qa_manager
 
