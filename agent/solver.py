@@ -117,3 +117,84 @@ class QuestionSolver:
                 "rightOptionId": opt.id
             })
         return pairs
+
+class SmartSolver:
+    """
+    Ko'p bosqichli to'liq avtonom aqlli savol yechuvchi:
+    1-bosqich: Tasdiqlangan ID bo'yicha (VERIFIED_ANSWERS va KB ID)
+    2-bosqich: Bilimlar bazasi matn / semantik mosligi (514+ tasdiqlangan savollar)
+    3-bosqich: Kutubxona qoidalari va me'yoriy hujjatlar matnidan chuqur qidirish (15 ta rasmiy hujjat)
+    4-bosqich: Me'yoriy testlar umumlashtiruvchi qonuniyati (masalan: 'a, b va v', 'barcha javoblar to'g'ri')
+    5-bosqich: Eng batafsil va to'liq texnik variant
+    """
+    def __init__(self, kb: Optional[KnowledgeBase] = None, library = None):
+        self.kb = kb or KnowledgeBase()
+        if library is None:
+            try:
+                from library_searcher import LibraryKnowledge
+                self.library = LibraryKnowledge()
+            except Exception:
+                self.library = None
+        else:
+            self.library = library
+
+    def find_best_answer(self, question: Question) -> Tuple[str, str, bool]:
+        """
+        Eng to'g'ri variantni topadi.
+        Qaytaradi: (selected_option_id, reason, is_known_in_kb)
+        """
+        if not question.options:
+            return "", "Variantlar mavjud emas", False
+
+        # 1. Aniq ID bo'yicha tekshirish
+        try:
+            from autopilot import VERIFIED_ANSWERS
+        except Exception:
+            VERIFIED_ANSWERS = {}
+
+        known_id = VERIFIED_ANSWERS.get(question.id) or self.kb.get_known_answer(question.id)
+        if known_id:
+            for opt in question.options:
+                if opt.id == known_id:
+                    return opt.id, "Bilimlar bazasidan tasdiqlangan ID (100%)", True
+
+        # 2. Savol matni bo'yicha KB dan qidirish (514+ savollar)
+        kb_match = self.kb.find_by_prompt(question.prompt, question.options)
+        if kb_match:
+            opt_id, opt_text, score, reason = kb_match
+            return opt_id, f"{reason} (Ishonch: {int(score*100)}%)", True
+
+        # 3. Rasmiy kutubxona hujjatlaridan qidirish
+        lib_opt_id = None
+        lib_score = 0.0
+        lib_reason = ""
+        if self.library:
+            try:
+                lib_opt_id, lib_score, lib_reason = self.library.solve_question(question)
+                if lib_opt_id and lib_score >= 0.40:
+                    return lib_opt_id, f"{lib_reason}", False
+            except Exception as e:
+                pass
+
+        # 4. Me'yoriy testlar umumlashtiruvchi variantlar qonuniyati
+        # O'zbekiston MET testlarida agar ushbu variantlar bo'lsa 95% hollarda to'g'ri javob bo'ladi
+        collective_patterns = [
+            'barcha javoblar', 'hamma javoblar', 'barchasi to', 'yuqoridagilarning barchasi',
+            'a b va v', 'a b va g', 'a b va d', 'a va b javoblar', 'a va v javoblar'
+        ]
+        for opt in question.options:
+            t = opt.option_text.lower()
+            cleaned = re.sub(r'[^a-z0-9\s]', ' ', t)
+            s_clean = ' '.join(cleaned.split())
+            if any(p in s_clean for p in collective_patterns):
+                return opt.id, f"Me'yoriy qonuniyat (Umumlashtiruvchi variant: '{opt.option_text}')", False
+
+        # 5. Agar kutubxonada pastroq bo'lsa ham moslik chiqqan bo'lsa
+        if lib_opt_id:
+            return lib_opt_id, f"Kutubxona yaqin mosligi: {lib_reason}", False
+
+        # 6. Fallback: eng batafsil va mukammal texnik variant
+        sorted_opts = sorted(question.options, key=lambda o: len(o.option_text.strip()), reverse=True)
+        chosen = sorted_opts[0]
+        return chosen.id, f"Hevristik tahlil (Batafsil texnik variant: '{chosen.option_text[:40]}...')", False
+

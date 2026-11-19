@@ -1388,10 +1388,9 @@
       "prompt": "Ishga qo'yuvchi ishga qo'yishdan oldin nima qilishi kerak?"
     },
     "61c05773-2e24-40c1-8b51-07c744fadda9": {
-      "correctOptionId": "f1a16194-79b7-4dad-ad68-8dc84d069948",
-      "verified": true,
-      "note": "Ish bajaruvchi ish joyidan ketganda (brigadani ish joyidan chiqarishi shart)",
-      "prompt": "Ish bajaruvchi (kuzatuvchi) ish joyidan vaqtincha ketishi zarur bo'lganda, agar uning o'rnini almashtirish imkoni bo'lmasa, ish bajaruvchi (kuztuvchi) nima qiladi?"
+      "correct_option_id": "f1a16194-79b7-4dad-ad68-8dc84d069948",
+      "prompt": "Ish bajaruvchi (kuzatuvchi) ish joyidan vaqtincha ketishi zarur bo'lganda, agar uning o'rnini almashtirish imkoni bo'lmasa, ish bajaruvchi (kuztuvchi) nima qiladi?",
+      "option_text": "brigadani ish joyidan vaqtincha chiqarishi shart"
     },
     "2cd50295-3615-4918-83eb-39929a6ba0cd": {
       "correctOptionId": "0b6c78a7-946d-4b1a-9feb-0af9a552ccd5",
@@ -1454,10 +1453,9 @@
       "prompt": "Ish bajaruvchi nimaga javob beradi?"
     },
     "79ce9156-4201-4358-b8fe-d6cd607c4f42": {
-      "correctOptionId": "4ae104c7-9ca3-4c6e-928f-f12479c9f27d",
-      "verified": true,
-      "note": "Brigada tarkibini ozgartirish (telefon, radio yoki chopar orqali)",
-      "prompt": "Brigada tarkibini o'zgartirish haqidagi ko'rsatma kimga va qanday beriladi?"
+      "correct_option_id": "4ae104c7-9ca3-4c6e-928f-f12479c9f27d",
+      "prompt": "Brigada tarkibini o'zgartirish haqidagi ko'rsatma kimga va qanday beriladi?",
+      "option_text": "telefon, radio yoki chopar orqali ishga qo'yuvchiga, ish raxbariga yoki ish bajaruvchiga berilishi mumkin"
     },
     "917435ec-1b1e-480b-a50e-445668efebbc": {
       "correctOptionId": "b0824fe0-c09a-4f21-9e80-d6e3cc20ef38",
@@ -2724,6 +2722,11 @@
       "correct_option_id": "adda4ff6-6459-42b3-bc1c-3b0e3c3c5cad",
       "prompt": "Naryad necha kunga uzaytirilishi mumkin?",
       "option_text": "naryadni 1 marta uzaytirilgan kunidan boshlab, 15 kalendar kunidan ko‘p bo‘lmagan muddatgacha uzaytirish mumkin"
+    },
+    "36bb8101-aa23-4d30-9640-0eeebb2fbe14": {
+      "correct_option_id": "7202ff26-cdd4-402d-a972-edf3e5fc0871",
+      "prompt": "Ilon chaqqanda birinchi yordam qanday ko'rsatiladi?",
+      "option_text": "ilon chaqqanida yordam ko'rsatish uchun chaqqan joydagi zaharni (iloji boricha tezroq) so'rib tuflab tashlash, hamda zaharning tarqalishini sekin-lashtirish uchun jabrlanuvchining harakatlarini cheklash lozim"
     }
   },
   "theories": {

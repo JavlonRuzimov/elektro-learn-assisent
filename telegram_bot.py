@@ -76,9 +76,12 @@ def build_full_report(plan_res=None):
         cor_q = plan_res.get("correct_count", cor_q)
         target_q = plan_res.get("total", target_q)
         percent = plan_res.get("completion_percent", 100)
-        is_comp = True
+        is_comp = plan_res.get("completion_percent", 0) >= 100 or plan_res.get("correct_count", 0) >= target_q
 
     status_badge = "✅ 100% Bajarildi (+100 XP)" if is_comp else f"⏳ {cor_q}/{target_q} ({percent}%)"
+    learned_str = ""
+    if plan_res and plan_res.get("new_learned_count", 0) > 0:
+        learned_str = f"🧠 <b>Avto-o'rganish:</b> {plan_res.get('new_learned_count')} ta yangi savol topildi va bazaga qo'shildi! 💡\n"
 
     text = (
         f"🌅 <b>ELEKTROLEARN KUNLIK HISOBOTI</b>\n\n"
@@ -90,7 +93,8 @@ def build_full_report(plan_res=None):
         f"🎯 <b>BUGUNGI KUNLIK REJA:</b>\n"
         f"📌 <b>Holati:</b> {status_badge}\n"
         f"✅ <b>To'g'ri javoblar:</b> {cor_q} / {target_q}\n"
-        f"🎁 <b>Kunlik bonus:</b> +100 XP\n\n"
+        f"🎁 <b>Kunlik bonus:</b> +100 XP\n"
+        f"{learned_str}\n"
         f"══════════════════════\n"
         f"📊 <b>UMUMIY PROFIL STATISTIKASI:</b>\n"
         f"⭐ <b>Jami XP:</b> {prof.get('total_xp', 0)} XP\n"
@@ -209,12 +213,6 @@ if bot:
             bot.send_message(
                 message.chat.id,
                 f"🎉 <b>Kunlik reja muvaffaqiyatli yakunlandi!</b>\n\n" + report,
-                parse_mode="HTML"
-            )
-        elif result.get("status") == "WAITING_USER":
-            bot.send_message(
-                message.chat.id,
-                "❓ <b>Yangi savol uchradi va yuqorida Telegram tugmalari bilan yuborildi!</b>\nIltimos, to'g'ri variantni tanlang.",
                 parse_mode="HTML"
             )
         else:
@@ -379,8 +377,6 @@ def background_daily_checker():
                             parse_mode="HTML"
                         )
                         print(f"[Scheduler] Kunlik reja muvaffaqiyatli yechildi va hisobot yuborildi.")
-                    elif res.get("status") == "WAITING_USER":
-                        print(f"[Scheduler] Yangi savol foydalanuvchiga yuborildi.")
                     else:
                         if ADMIN_CHAT_ID and bot:
                             bot.send_message(
