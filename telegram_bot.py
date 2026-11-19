@@ -179,7 +179,7 @@ if bot:
             bot.send_message(
                 message.chat.id,
                 f"✅ <b>Bugungi kunlik reja allaqachon to'liq bajarilgan!</b>\n"
-                f"Natija: {status_info.get('answered_count')}/{status_info.get('target_questions')} (+100 XP olingan).\n\n"
+                f"Natija: {status_info.get('correct_count', 10)}/{status_info.get('target_questions', 10)} to'g'ri (+100 XP olingan).\n\n"
                 f"⏰ Ertaga soat 09:00 da yangi reja avtomatik yechiladi.",
                 parse_mode="HTML"
             )
