@@ -237,6 +237,17 @@ if bot:
                 summary = mu_solver.run_batch()
                 report_text = MultiUserSolver.format_telegram_report(summary)
                 bot.send_message(message.chat.id, report_text, parse_mode="HTML")
+
+                # Agar xato login-parollar bo'lsa, alohida Excel fayl qilib yuboramiz
+                excel_path = summary.get("failed_excel_path")
+                if excel_path and os.path.exists(excel_path):
+                    with open(excel_path, "rb") as doc_f:
+                        bot.send_document(
+                            message.chat.id,
+                            doc_f,
+                            caption="📑 <b>Login yoki paroli xato bo'lgan xodimlar ro'yxati (Excel)</b>",
+                            parse_mode="HTML"
+                        )
             except Exception as e:
                 bot.send_message(message.chat.id, f"❌ Barcha xodimlarni yechishda xatolik: {e}")
 
@@ -419,6 +430,15 @@ def background_daily_checker():
                         if ADMIN_CHAT_ID and bot:
                             mu_report = MultiUserSolver.format_telegram_report(mu_summary)
                             bot.send_message(int(ADMIN_CHAT_ID), mu_report, parse_mode="HTML")
+                            excel_path = mu_summary.get("failed_excel_path")
+                            if excel_path and os.path.exists(excel_path):
+                                with open(excel_path, "rb") as doc_f:
+                                    bot.send_document(
+                                        int(ADMIN_CHAT_ID),
+                                        doc_f,
+                                        caption="📑 <b>Login yoki paroli xato bo'lgan xodimlar ro'yxati (Excel)</b>",
+                                        parse_mode="HTML"
+                                    )
                     except Exception as mu_err:
                         print(f"[Scheduler MultiUser Xatosi]: {mu_err}")
         except Exception as e:

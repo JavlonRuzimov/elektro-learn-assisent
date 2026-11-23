@@ -181,6 +181,18 @@ class MultiUserSolver:
 
         summary["finished_at"] = datetime.now(TASHKENT_TZ).isoformat()
 
+        # Login yoki paroli xato bo'lgan xodimlarni Excel faylga eksport qilish
+        emp_map = {e["login"]: e for e in employees}
+        failed_list = [
+            {**r, **emp_map.get(r["login"], {})}
+            for r in summary["results"]
+            if r["status"] in ["LOGIN_FAILED", "ERROR", "CRITICAL_ERROR", "PARTIAL_OR_FAILED"]
+        ]
+        excel_path = None
+        if failed_list:
+            excel_path = self.export_failed_employees_to_excel(failed_list)
+            summary["failed_excel_path"] = excel_path
+
         # Hisobotni faylga saqlash
         os.makedirs("data/multi_user_reports", exist_ok=True)
         today_str = datetime.now(TASHKENT_TZ).strftime("%Y-%m-%d")
@@ -193,8 +205,103 @@ class MultiUserSolver:
         print(f"✅ Yangi yechilganlar: {summary['solved']} ta (+{summary['total_xp_gained']} XP)")
         print(f"⏭ Allaqachon yechilganlar: {summary['already_completed']} ta")
         print(f"❌ Xatoliklar / Login xato: {summary['login_failed'] + summary['errors']} ta")
+        if excel_path:
+            print(f"📑 Xatoliklar Excel fayli: {excel_path}")
         print(f"📁 Hisobot fayli: {report_file}")
         print(f"=======================================================\n")
+
+        return summary
+
+    def export_failed_employees_to_excel(self, failed_list: List[Dict[str, Any]], filename: Optional[str] = None) -> Optional[str]:
+        """Login yoki paroli xato bo'lgan xodimlarni chiroyli Excel (.xlsx) fayliga chiqarish"""
+        if not failed_list:
+            return None
+
+        today_str = datetime.now(TASHKENT_TZ).strftime("%Y-%m-%d")
+        os.makedirs("data/multi_user_reports", exist_ok=True)
+        xlsx_path = filename or f"data/multi_user_reports/Xatoliklar_{today_str}.xlsx"
+
+        try:
+            import openpyxl
+            from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+
+            wb = openpyxl.Workbook()
+            ws = wb.active
+            ws.title = "Xato login-parollar"
+
+            headers = [
+                "№", "Tabel raqami", "F.I.O (Familiya Ism Sharif)", "Login", 
+                "Parol", "Bo'lim", "Lavozim", "Xatolik sababi", "Tekshirilgan vaqt"
+            ]
+            ws.append(headers)
+
+            # Sarlavha uslubi
+            header_fill = PatternFill(start_color="1F497D", end_color="1F497D", fill_type="solid")
+            header_font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
+            thin_border = Border(
+                left=Side(style='thin', color='D9D9D9'),
+                right=Side(style='thin', color='D9D9D9'),
+                top=Side(style='thin', color='D9D9D9'),
+                bottom=Side(style='thin', color='D9D9D9')
+            )
+
+            for col_num in range(1, len(headers) + 1):
+                cell = ws.cell(row=1, column=col_num)
+                cell.fill = header_fill
+                cell.font = header_font
+                cell.alignment = Alignment(horizontal="center", vertical="center")
+
+            now_time = datetime.now(TASHKENT_TZ).strftime("%Y-%m-%d %H:%M")
+            for idx, item in enumerate(failed_list, 1):
+                reason = item.get("message", "Login yoki parol noto'g'ri")
+                if "401" in reason or "Invalid" in reason:
+                    reason = "Login yoki parol noto'g'ri (Energo ID 401)"
+                elif "403" in reason:
+                    reason = "Kirish taqiqlangan (403)"
+
+                row_data = [
+                    idx,
+                    item.get("tabel", ""),
+                    item.get("name", ""),
+                    item.get("login", ""),
+                    item.get("password", ""),
+                    item.get("department", ""),
+                    item.get("position", ""),
+                    reason,
+                    now_time
+                ]
+                ws.append(row_data)
+
+                row_idx = idx + 1
+                for c_idx in range(1, len(row_data) + 1):
+                    c = ws.cell(row=row_idx, column=c_idx)
+                    c.border = thin_border
+                    c.font = Font(name="Calibri", size=10)
+                    if c_idx in [1, 2, 4, 5, 9]:
+                        c.alignment = Alignment(horizontal="center", vertical="center")
+
+            for col in ws.columns:
+                max_len = max(len(str(cell.value or '')) for cell in col)
+                col_letter = openpyxl.utils.get_column_letter(col[0].column)
+                ws.column_dimensions[col_letter].width = max(max_len + 4, 12)
+
+            wb.save(xlsx_path)
+            print(f"[MultiUser] 📊 Xatoliklar Excel faylga saqlandi: {xlsx_path}")
+            return xlsx_path
+
+        except Exception as e:
+            print(f"[!] Excel yaratishda xatolik: {e}")
+            csv_path = xlsx_path.replace(".xlsx", ".csv")
+            with open(csv_path, "w", encoding="utf-8-sig", newline="") as f:
+                writer = csv.writer(f)
+                writer.writerow(["№", "Tabel raqami", "F.I.O", "Login", "Parol", "Bo'lim", "Lavozim", "Xatolik sababi"])
+                for idx, item in enumerate(failed_list, 1):
+                    writer.writerow([
+                        idx, item.get("tabel", ""), item.get("name", ""), item.get("login", ""),
+                        item.get("password", ""), item.get("department", ""), item.get("position", ""),
+                        item.get("message", "")
+                    ])
+            return csv_path
 
         return summary
 
