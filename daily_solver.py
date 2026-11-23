@@ -1,5 +1,5 @@
 import time
-from typing import Dict, Any, Tuple
+from typing import Dict, Any, Tuple, Optional
 from api import ElektroLearnClient
 from agent.knowledge_base import KnowledgeBase
 from library_searcher import LibraryKnowledge
