@@ -51,14 +51,15 @@ def get_main_keyboard():
     btn_daily = types.KeyboardButton("🎯 Kunlik rejani yechish")
     btn_profile = types.KeyboardButton("📊 Mening profilim")
     btn_all = types.KeyboardButton("👥 Barcha xodimlar")
+    btn_live = types.KeyboardButton("⚡ Jonli holat")
     btn_levels = types.KeyboardButton("📚 Darajalar holati")
     btn_search = types.KeyboardButton("🔍 Savol qidirish")
     btn_exam = types.KeyboardButton("📝 Imtihonlar")
     btn_toggle = types.KeyboardButton("⚙️ Avto 09:00: " + ("Yoqilgan ✅" if AUTO_SOLVE_ENABLED else "O'chirilgan ❌"))
     markup.add(btn_daily, btn_profile)
-    markup.add(btn_all, btn_levels)
-    markup.add(btn_search, btn_exam)
-    markup.add(btn_toggle)
+    markup.add(btn_all, btn_live)
+    markup.add(btn_levels, btn_search)
+    markup.add(btn_exam, btn_toggle)
     return markup
 
 def build_full_report(plan_res=None):
@@ -220,21 +221,118 @@ if bot:
         else:
             bot.send_message(message.chat.id, f"ℹ️ {result.get('message', 'Natija topilmadi')}")
 
+def format_live_state_card(state: dict) -> str:
+    """Jonli jarayon holatini chiroyli formatlash"""
+    if not state or not state.get("is_running"):
+        if state and state.get("finished_at"):
+            return (
+                "ℹ️ <b>Ayni paytda test yechish jarayoni faol emas.</b>\n\n"
+                f"🏁 <b>Oxirgi jarayon yakunlangan ({state.get('finished_at')}):</b>\n"
+                f"👥 Jami tekshirilgan: <b>{state.get('total', 0)} nafar xodim</b>\n"
+                f"✅ Yechildi: <b>{state.get('solved', 0)} ta</b> (+{state.get('total_xp_gained', 0)} XP)\n"
+                f"⏭ Allaqachon yechilgan: <b>{state.get('already_completed', 0)} ta</b>\n"
+                f"❌ Login xato / muammo: <b>{state.get('failed', 0)} ta</b>\n\n"
+                f"<i>Yangi umumiy yechishni boshlash uchun <b>👥 Barcha xodimlar</b> tugmasini bosing.</i>"
+            )
+        return (
+            "ℹ️ <b>Ayni paytda test yechish jarayoni faol emas.</b>\n\n"
+            "<i>Jarayonni boshlash uchun quyidagi <b>👥 Barcha xodimlar</b> tugmasini bosing.</i>"
+        )
+
+    cur = state.get("current_index", 0)
+    total = state.get("total", 367)
+    pct = state.get("percent", 0.0)
+    emp = state.get("employee", {})
+    status_text = state.get("status_text", "")
+    solved = state.get("solved", 0)
+    already = state.get("already_completed", 0)
+    failed = state.get("failed", 0)
+    xp = state.get("total_xp_gained", 0)
+
+    bars = int(pct // 10)
+    prog_bar = "█" * bars + "░" * (10 - bars)
+
+    return (
+        f"⚡ <b>JONLI JARAYON KUZATUVI (REAL-TIME)</b>\n\n"
+        f"📊 <b>Taraqqiyot:</b> [{prog_bar}] <b>{cur}/{total} ({pct}%)</b>\n\n"
+        f"👤 <b>Ayni damda ishlanayotgan xodim:</b>\n"
+        f"▫️ <b>F.I.SH:</b> {emp.get('name', 'Noma\'lum')}\n"
+        f"▫️ <b>Login:</b> <code>{emp.get('login', '')}</code>\n"
+        f"▫️ <b>Bo'lim:</b> {emp.get('department', '-')}\n"
+        f"▫️ <b>Lavozim:</b> {emp.get('position', '-')}\n"
+        f"▫️ <b>Holat:</b> {status_text}\n\n"
+        f"📈 <b>Jonli hisoblagich:</b>\n"
+        f"✅ Yechildi: <b>{solved} ta</b> (+{xp} XP)\n"
+        f"⏭ Allaqachon yechilgan: <b>{already} ta</b>\n"
+        f"❌ Login xato: <b>{failed} ta</b>\n\n"
+        f"⏱ <i>Vaqt: {state.get('updated_at', '')} (Toshkent)</i>"
+    )
+
+    @bot.message_handler(func=lambda m: m.text in ["⚡ Jonli holat", "/live", "/status", "Jonli holat"])
+    def handle_live_status(message):
+        state_file = "data/current_batch_state.json"
+        state = {}
+        if os.path.exists(state_file):
+            try:
+                with open(state_file, "r", encoding="utf-8") as f:
+                    state = json.load(f)
+            except Exception:
+                pass
+        text = format_live_state_card(state)
+        bot.send_message(message.chat.id, text, parse_mode="HTML")
+
     @bot.message_handler(func=lambda m: m.text in ["👥 Barcha xodimlar", "👥 Barcha xodimlar rejasini yechish", "/solve_all"])
     def handle_solve_all_employees(message):
-        bot.send_message(
+        state_file = "data/current_batch_state.json"
+        if os.path.exists(state_file):
+            try:
+                with open(state_file, "r", encoding="utf-8") as f:
+                    st = json.load(f)
+                    if st.get("is_running"):
+                        bot.send_message(
+                            message.chat.id,
+                            "⚠️ <b>Jarayon allaqachon fonda ishlamoqda!</b>\n\n"
+                            "Jonli kuzatib borish uchun <b>⚡ Jonli holat</b> tugmasini bosing.",
+                            parse_mode="HTML"
+                        )
+                        return
+            except Exception:
+                pass
+
+        status_msg = bot.send_message(
             message.chat.id,
             "🚀 <b>Filialdagi barcha xodimlarning kunlik testlarini yechish boshlandi...</b>\n\n"
             "👥 Jami ro'yxat: 367 nafar xodim\n"
-            "⏳ Jarayon xavfsiz rejimda fonda ketmoqda (har bir xodim orasida 2 soniya tanaffus bilan).\n\n"
-            "Barcha xodimlar yakunlangach, to'liq jamlama hisobot shu yerga yuboriladi!",
+            "⏳ Har bir xodim profiliga kirilib, kunlik test yechilmoqda va bu xabar jonli yangilanib boradi...",
             parse_mode="HTML"
         )
+
         def run_all_thread():
             try:
                 from multi_user_solver import MultiUserSolver
                 mu_solver = MultiUserSolver()
-                summary = mu_solver.run_batch()
+
+                last_edit_time = 0
+
+                def on_live_progress(live_data):
+                    nonlocal last_edit_time
+                    now = time.time()
+                    cur_idx = live_data.get("current_index", 0)
+                    total_cnt = live_data.get("total", 367)
+                    if now - last_edit_time >= 2.5 or cur_idx == total_cnt:
+                        last_edit_time = now
+                        try:
+                            card_text = format_live_state_card(live_data)
+                            bot.edit_message_text(
+                                chat_id=message.chat.id,
+                                message_id=status_msg.message_id,
+                                text=card_text,
+                                parse_mode="HTML"
+                            )
+                        except Exception:
+                            pass
+
+                summary = mu_solver.run_batch(progress_callback=on_live_progress)
                 report_text = MultiUserSolver.format_telegram_report(summary)
                 bot.send_message(message.chat.id, report_text, parse_mode="HTML")
 
@@ -280,7 +378,7 @@ if bot:
 
     @bot.message_handler(func=lambda m: m.text and not m.text.startswith("/") and m.text not in [
         "🎯 Kunlik rejani yechish", "📊 Mening profilim", "📚 Darajalar holati", "🔍 Savol qidirish",
-        "👥 Barcha xodimlar", "📝 Imtihonlar"
+        "👥 Barcha xodimlar", "📝 Imtihonlar", "⚡ Jonli holat"
     ] and not m.text.startswith("⚙️"))
     def handle_general_search(message):
         query = message.text.strip()

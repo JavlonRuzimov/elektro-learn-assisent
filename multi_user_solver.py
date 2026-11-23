@@ -122,7 +122,7 @@ class MultiUserSolver:
             result["message"] = f"Yechish jarayonida xatolik: {e}"
             return result
 
-    def run_batch(self, limit: Optional[int] = None, target_login: Optional[str] = None) -> Dict[str, Any]:
+    def run_batch(self, limit: Optional[int] = None, target_login: Optional[str] = None, progress_callback = None) -> Dict[str, Any]:
         """Barcha yoki belgilangan sondagi xodimlar uchun yechish"""
         employees = self.load_employees()
         if target_login:
@@ -152,10 +152,46 @@ class MultiUserSolver:
             "results": []
         }
 
+        os.makedirs("data", exist_ok=True)
+        live_state_file = "data/current_batch_state.json"
+
+        def update_state(idx, emp, status_str):
+            pct = round((idx / total) * 100, 1)
+            live_data = {
+                "is_running": True,
+                "current_index": idx,
+                "total": total,
+                "percent": pct,
+                "employee": {
+                    "name": emp.get("name", ""),
+                    "login": emp.get("login", ""),
+                    "department": emp.get("department", ""),
+                    "position": emp.get("position", "")
+                },
+                "status_text": status_str,
+                "solved": summary["solved"],
+                "already_completed": summary["already_completed"],
+                "failed": summary["login_failed"] + summary["errors"],
+                "total_xp_gained": summary["total_xp_gained"],
+                "updated_at": datetime.now(TASHKENT_TZ).strftime("%H:%M:%S")
+            }
+            try:
+                with open(live_state_file, "w", encoding="utf-8") as f:
+                    json.dump(live_data, f, ensure_ascii=False, indent=2)
+            except Exception:
+                pass
+            if progress_callback:
+                try:
+                    progress_callback(live_data)
+                except Exception:
+                    pass
+
         for idx, emp in enumerate(employees, 1):
             login = emp["login"]
             name = emp["name"]
             print(f"[{idx}/{total}] {name} ({login}) tekshirilmoqda...", end=" ", flush=True)
+
+            update_state(idx, emp, "Tizimga kirilmoqda va tekshirilmoqda...")
 
             res = self.solve_employee_safe(emp)
             summary["results"].append(res)
@@ -164,22 +200,45 @@ class MultiUserSolver:
             if status == "SOLVED":
                 summary["solved"] += 1
                 summary["total_xp_gained"] += res["xp_gained"]
-                print(f"✅ YECHILDI (+{res['xp_gained']} XP, Jami: {res['total_xp']} XP, #{res['rank']})")
+                msg = f"✅ YECHILDI (+{res['xp_gained']} XP, Jami: {res['total_xp']} XP, #{res['rank']})"
+                print(f"{msg}")
+                update_state(idx, emp, msg)
             elif status == "ALREADY_COMPLETED":
                 summary["already_completed"] += 1
-                print(f"⏭ ALLAQACHON BAJARILGAN (Jami: {res['total_xp']} XP, #{res['rank']})")
+                msg = f"⏭ ALLAQACHON BAJARILGAN (Jami: {res['total_xp']} XP, #{res['rank']})"
+                print(f"{msg}")
+                update_state(idx, emp, msg)
             elif status == "LOGIN_FAILED":
                 summary["login_failed"] += 1
-                print(f"❌ LOGIN XATO ({res['message']})")
+                msg = f"❌ LOGIN XATO ({res['message']})"
+                print(f"{msg}")
+                update_state(idx, emp, msg)
             else:
                 summary["errors"] += 1
-                print(f"⚠️ XATO ({res['message']})")
+                msg = f"⚠️ XATO ({res['message']})"
+                print(f"{msg}")
+                update_state(idx, emp, msg)
 
             # Xodimlar orasida tanaffus
             if idx < total:
                 time.sleep(self.delay)
 
         summary["finished_at"] = datetime.now(TASHKENT_TZ).isoformat()
+
+        # Batch yakunlandi holatini yozish
+        try:
+            with open(live_state_file, "w", encoding="utf-8") as f:
+                json.dump({
+                    "is_running": False,
+                    "finished_at": datetime.now(TASHKENT_TZ).strftime("%H:%M:%S"),
+                    "total": total,
+                    "solved": summary["solved"],
+                    "already_completed": summary["already_completed"],
+                    "failed": summary["login_failed"] + summary["errors"],
+                    "total_xp_gained": summary["total_xp_gained"]
+                }, f, ensure_ascii=False, indent=2)
+        except Exception:
+            pass
 
         # Login yoki paroli xato bo'lgan xodimlarni Excel faylga eksport qilish
         emp_map = {e["login"]: e for e in employees}
