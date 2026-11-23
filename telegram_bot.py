@@ -110,6 +110,53 @@ def build_full_report(plan_res=None):
     )
     return text
 
+def format_live_state_card(state: dict) -> str:
+    """Jonli jarayon holatini chiroyli formatlash"""
+    if not state or not state.get("is_running"):
+        if state and state.get("finished_at"):
+            return (
+                "ℹ️ <b>Ayni paytda test yechish jarayoni faol emas.</b>\n\n"
+                f"🏁 <b>Oxirgi jarayon yakunlangan ({state.get('finished_at')}):</b>\n"
+                f"👥 Jami tekshirilgan: <b>{state.get('total', 0)} nafar xodim</b>\n"
+                f"✅ Yechildi: <b>{state.get('solved', 0)} ta</b> (+{state.get('total_xp_gained', 0)} XP)\n"
+                f"⏭ Allaqachon yechilgan: <b>{state.get('already_completed', 0)} ta</b>\n"
+                f"❌ Login xato / muammo: <b>{state.get('failed', 0)} ta</b>\n\n"
+                f"<i>Yangi umumiy yechishni boshlash uchun <b>👥 Barcha xodimlar</b> tugmasini bosing.</i>"
+            )
+        return (
+            "ℹ️ <b>Ayni paytda test yechish jarayoni faol emas.</b>\n\n"
+            "<i>Jarayonni boshlash uchun quyidagi <b>👥 Barcha xodimlar</b> tugmasini bosing.</i>"
+        )
+
+    cur = state.get("current_index", 0)
+    total = state.get("total", 367)
+    pct = state.get("percent", 0.0)
+    emp = state.get("employee", {})
+    status_text = state.get("status_text", "")
+    solved = state.get("solved", 0)
+    already = state.get("already_completed", 0)
+    failed = state.get("failed", 0)
+    xp = state.get("total_xp_gained", 0)
+
+    bars = int(pct // 10)
+    prog_bar = "█" * bars + "░" * (10 - bars)
+
+    return (
+        f"⚡ <b>JONLI JARAYON KUZATUVI (REAL-TIME)</b>\n\n"
+        f"📊 <b>Taraqqiyot:</b> [{prog_bar}] <b>{cur}/{total} ({pct}%)</b>\n\n"
+        f"👤 <b>Ayni damda ishlanayotgan xodim:</b>\n"
+        f"▫️ <b>F.I.SH:</b> {emp.get('name', 'Noma\'lum')}\n"
+        f"▫️ <b>Login:</b> <code>{emp.get('login', '')}</code>\n"
+        f"▫️ <b>Bo'lim:</b> {emp.get('department', '-')}\n"
+        f"▫️ <b>Lavozim:</b> {emp.get('position', '-')}\n"
+        f"▫️ <b>Holat:</b> {status_text}\n\n"
+        f"📈 <b>Jonli hisoblagich:</b>\n"
+        f"✅ Yechildi: <b>{solved} ta</b> (+{xp} XP)\n"
+        f"⏭ Allaqachon yechilgan: <b>{already} ta</b>\n"
+        f"❌ Login xato: <b>{failed} ta</b>\n\n"
+        f"⏱ <i>Vaqt: {state.get('updated_at', '')} (Toshkent)</i>"
+    )
+
 if bot:
     @bot.message_handler(commands=['start', 'help'])
     def send_welcome(message):
@@ -220,53 +267,6 @@ if bot:
             )
         else:
             bot.send_message(message.chat.id, f"ℹ️ {result.get('message', 'Natija topilmadi')}")
-
-def format_live_state_card(state: dict) -> str:
-    """Jonli jarayon holatini chiroyli formatlash"""
-    if not state or not state.get("is_running"):
-        if state and state.get("finished_at"):
-            return (
-                "ℹ️ <b>Ayni paytda test yechish jarayoni faol emas.</b>\n\n"
-                f"🏁 <b>Oxirgi jarayon yakunlangan ({state.get('finished_at')}):</b>\n"
-                f"👥 Jami tekshirilgan: <b>{state.get('total', 0)} nafar xodim</b>\n"
-                f"✅ Yechildi: <b>{state.get('solved', 0)} ta</b> (+{state.get('total_xp_gained', 0)} XP)\n"
-                f"⏭ Allaqachon yechilgan: <b>{state.get('already_completed', 0)} ta</b>\n"
-                f"❌ Login xato / muammo: <b>{state.get('failed', 0)} ta</b>\n\n"
-                f"<i>Yangi umumiy yechishni boshlash uchun <b>👥 Barcha xodimlar</b> tugmasini bosing.</i>"
-            )
-        return (
-            "ℹ️ <b>Ayni paytda test yechish jarayoni faol emas.</b>\n\n"
-            "<i>Jarayonni boshlash uchun quyidagi <b>👥 Barcha xodimlar</b> tugmasini bosing.</i>"
-        )
-
-    cur = state.get("current_index", 0)
-    total = state.get("total", 367)
-    pct = state.get("percent", 0.0)
-    emp = state.get("employee", {})
-    status_text = state.get("status_text", "")
-    solved = state.get("solved", 0)
-    already = state.get("already_completed", 0)
-    failed = state.get("failed", 0)
-    xp = state.get("total_xp_gained", 0)
-
-    bars = int(pct // 10)
-    prog_bar = "█" * bars + "░" * (10 - bars)
-
-    return (
-        f"⚡ <b>JONLI JARAYON KUZATUVI (REAL-TIME)</b>\n\n"
-        f"📊 <b>Taraqqiyot:</b> [{prog_bar}] <b>{cur}/{total} ({pct}%)</b>\n\n"
-        f"👤 <b>Ayni damda ishlanayotgan xodim:</b>\n"
-        f"▫️ <b>F.I.SH:</b> {emp.get('name', 'Noma\'lum')}\n"
-        f"▫️ <b>Login:</b> <code>{emp.get('login', '')}</code>\n"
-        f"▫️ <b>Bo'lim:</b> {emp.get('department', '-')}\n"
-        f"▫️ <b>Lavozim:</b> {emp.get('position', '-')}\n"
-        f"▫️ <b>Holat:</b> {status_text}\n\n"
-        f"📈 <b>Jonli hisoblagich:</b>\n"
-        f"✅ Yechildi: <b>{solved} ta</b> (+{xp} XP)\n"
-        f"⏭ Allaqachon yechilgan: <b>{already} ta</b>\n"
-        f"❌ Login xato: <b>{failed} ta</b>\n\n"
-        f"⏱ <i>Vaqt: {state.get('updated_at', '')} (Toshkent)</i>"
-    )
 
     @bot.message_handler(func=lambda m: m.text in ["⚡ Jonli holat", "/live", "/status", "Jonli holat"])
     def handle_live_status(message):
