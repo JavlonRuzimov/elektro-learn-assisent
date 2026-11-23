@@ -24,6 +24,9 @@ data/m5_*.json
 data/pending_qa.json
 data/multi_user_reports/
 *.xlsx
+!yangi_royxat.xlsx
+!data/yangi_royxat.xlsx
+data/current_batch_state.json
 ~$*
 
 # Virtual Environments

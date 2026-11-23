@@ -129,7 +129,7 @@ def format_live_state_card(state: dict) -> str:
         )
 
     cur = state.get("current_index", 0)
-    total = state.get("total", 367)
+    total = state.get("total", 37)
     pct = state.get("percent", 0.0)
     emp = state.get("employee", {})
     status_text = state.get("status_text", "")
@@ -299,26 +299,28 @@ if bot:
             except Exception:
                 pass
 
+        from multi_user_solver import MultiUserSolver
+        mu_solver = MultiUserSolver()
+        emp_list = mu_solver.load_employees()
+        total_count = len(emp_list)
+
         status_msg = bot.send_message(
             message.chat.id,
-            "🚀 <b>Filialdagi barcha xodimlarning kunlik testlarini yechish boshlandi...</b>\n\n"
-            "👥 Jami ro'yxat: 367 nafar xodim\n"
+            "🚀 <b>Filialdagi xodimlarning kunlik testlarini yechish boshlandi...</b>\n\n"
+            f"👥 Jami ro'yxat: {total_count} nafar xodim\n"
             "⏳ Har bir xodim profiliga kirilib, kunlik test yechilmoqda va bu xabar jonli yangilanib boradi...",
             parse_mode="HTML"
         )
 
         def run_all_thread():
             try:
-                from multi_user_solver import MultiUserSolver
-                mu_solver = MultiUserSolver()
-
                 last_edit_time = 0
 
                 def on_live_progress(live_data):
                     nonlocal last_edit_time
                     now = time.time()
                     cur_idx = live_data.get("current_index", 0)
-                    total_cnt = live_data.get("total", 367)
+                    total_cnt = live_data.get("total", total_count)
                     if now - last_edit_time >= 2.5 or cur_idx == total_cnt:
                         last_edit_time = now
                         try:
