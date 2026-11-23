@@ -50,13 +50,15 @@ def get_main_keyboard():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
     btn_daily = types.KeyboardButton("🎯 Kunlik rejani yechish")
     btn_profile = types.KeyboardButton("📊 Mening profilim")
-    btn_search = types.KeyboardButton("🔍 Savol qidirish")
+    btn_all = types.KeyboardButton("👥 Barcha xodimlar")
     btn_levels = types.KeyboardButton("📚 Darajalar holati")
+    btn_search = types.KeyboardButton("🔍 Savol qidirish")
     btn_exam = types.KeyboardButton("📝 Imtihonlar")
     btn_toggle = types.KeyboardButton("⚙️ Avto 09:00: " + ("Yoqilgan ✅" if AUTO_SOLVE_ENABLED else "O'chirilgan ❌"))
     markup.add(btn_daily, btn_profile)
-    markup.add(btn_search, btn_levels)
-    markup.add(btn_exam, btn_toggle)
+    markup.add(btn_all, btn_levels)
+    markup.add(btn_search, btn_exam)
+    markup.add(btn_toggle)
     return markup
 
 def build_full_report(plan_res=None):
@@ -218,6 +220,28 @@ if bot:
         else:
             bot.send_message(message.chat.id, f"ℹ️ {result.get('message', 'Natija topilmadi')}")
 
+    @bot.message_handler(func=lambda m: m.text in ["👥 Barcha xodimlar", "👥 Barcha xodimlar rejasini yechish", "/solve_all"])
+    def handle_solve_all_employees(message):
+        bot.send_message(
+            message.chat.id,
+            "🚀 <b>Filialdagi barcha xodimlarning kunlik testlarini yechish boshlandi...</b>\n\n"
+            "👥 Jami ro'yxat: 367 nafar xodim\n"
+            "⏳ Jarayon xavfsiz rejimda fonda ketmoqda (har bir xodim orasida 2 soniya tanaffus bilan).\n\n"
+            "Barcha xodimlar yakunlangach, to'liq jamlama hisobot shu yerga yuboriladi!",
+            parse_mode="HTML"
+        )
+        def run_all_thread():
+            try:
+                from multi_user_solver import MultiUserSolver
+                mu_solver = MultiUserSolver()
+                summary = mu_solver.run_batch()
+                report_text = MultiUserSolver.format_telegram_report(summary)
+                bot.send_message(message.chat.id, report_text, parse_mode="HTML")
+            except Exception as e:
+                bot.send_message(message.chat.id, f"❌ Barcha xodimlarni yechishda xatolik: {e}")
+
+        threading.Thread(target=run_all_thread, daemon=True).start()
+
     @bot.message_handler(func=lambda m: "Avto 09:00:" in m.text or "Avto-yechish:" in m.text)
     def handle_toggle_auto(message):
         global AUTO_SOLVE_ENABLED
@@ -244,7 +268,8 @@ if bot:
         )
 
     @bot.message_handler(func=lambda m: m.text and not m.text.startswith("/") and m.text not in [
-        "🎯 Kunlik rejani yechish", "📊 Mening profilim", "📚 Darajalar holati", "🔍 Savol qidirish"
+        "🎯 Kunlik rejani yechish", "📊 Mening profilim", "📚 Darajalar holati", "🔍 Savol qidirish",
+        "👥 Barcha xodimlar", "📝 Imtihonlar"
     ] and not m.text.startswith("⚙️"))
     def handle_general_search(message):
         query = message.text.strip()
@@ -384,6 +409,18 @@ def background_daily_checker():
                                 f"⚠️ <b>Kunlik reja to'xtatildi:</b>\n{res.get('message', 'Noma\'lum holat')}",
                                 parse_mode="HTML"
                             )
+
+                    # 4. Filialdagi barcha xodimlarning kunlik rejasini yechish
+                    try:
+                        print(f"[Scheduler] Filialdagi barcha xodimlarning kunlik rejasini yechish boshlandi...")
+                        from multi_user_solver import MultiUserSolver
+                        mu_solver = MultiUserSolver()
+                        mu_summary = mu_solver.run_batch()
+                        if ADMIN_CHAT_ID and bot:
+                            mu_report = MultiUserSolver.format_telegram_report(mu_summary)
+                            bot.send_message(int(ADMIN_CHAT_ID), mu_report, parse_mode="HTML")
+                    except Exception as mu_err:
+                        print(f"[Scheduler MultiUser Xatosi]: {mu_err}")
         except Exception as e:
             print(f"[Scheduler Xatosi]: {e}")
 

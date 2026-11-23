@@ -22,6 +22,9 @@ data/missing_*.json
 data/current_live_state.json
 data/m5_*.json
 data/pending_qa.json
+data/multi_user_reports/
+*.xlsx
+~$*
 
 # Virtual Environments
 venv/

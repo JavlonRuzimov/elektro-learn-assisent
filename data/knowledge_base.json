@@ -1023,7 +1023,7 @@
     "93785580-50d8-4f2a-9c70-cd31ba5075d1": {
       "correct_option_id": "7896340a-9a62-4a9e-92e6-cc964e23157e",
       "prompt": "Agar shikastlangan elektr qurilmada ishlar yakuniga etmagan bo'lsa, lekin naryadning amal qilish muddati tugayotgan bo'lsa nima qilish mumkin?",
-      "option_text": "Ushbu naryadni bergan yoki ushbu elektr qurilmasida ishlashga naryad berish huquqiga ega bo'lgan xodim uzaytirishi mumkin."
+      "option_text": "Ushbu naryadni bergan yoki ushbu elektr qurilmasida ishlashga naryad berish huquqiga ega bo'lgan xodim uzaytirishi mumkin. "
     },
     "cde33122-683d-4bad-a6fe-71330e4edcc1": {
       "correct_option_id": "4f927f88-c79f-42e6-99bb-38097ca72777",
@@ -1083,12 +1083,12 @@
     "7c501fb6-45e8-4962-b32b-0f7c4591b48c": {
       "correct_option_id": "cbb633e7-3eb4-4dc6-9614-0264d870b8cd",
       "prompt": "O'chirgich va uzgichlari bo'lmagan 1000 Vgacha kuchlanishli ulanmalarda plakatlar qaerga osiladi?",
-      "option_text": "Saqlagichlar olib qo'yilgan joylarga osiladi"
+      "option_text": "Saqlagichlar olib qo'yilgan joylarga osiladi "
     },
     "977dccbc-4921-4f8c-a7a8-41461d9d10f9": {
-      "correct_option_id": "ad124d76-9bc8-44e4-a63b-958546bb7b8a",
+      "correct_option_id": "b5c83fb4-8401-479e-ba2b-db7b5ed96d9a",
       "prompt": "Ishlarni bajarish uchun yuqoriga chiqishga ruxsat etilgan stasionar narvonlarga va konstruksiyalarga qanday plakat osilishi kerak?",
-      "option_text": "“Ochilmasin! Odamlar ishlamoqda!”"
+      "option_text": "“Shu erdan chiqilsin!” "
     },
     "85f63def-ba40-41cf-a3b4-2887fb82e0f2": {
       "correct_option_id": "0a77b442-7921-46de-bdf0-06def1843d18",
@@ -2727,6 +2727,11 @@
       "correct_option_id": "7202ff26-cdd4-402d-a972-edf3e5fc0871",
       "prompt": "Ilon chaqqanda birinchi yordam qanday ko'rsatiladi?",
       "option_text": "ilon chaqqanida yordam ko'rsatish uchun chaqqan joydagi zaharni (iloji boricha tezroq) so'rib tuflab tashlash, hamda zaharning tarqalishini sekin-lashtirish uchun jabrlanuvchining harakatlarini cheklash lozim"
+    },
+    "3be06ba4-1fb1-4d65-91f6-3ebfaafcd933": {
+      "correct_option_id": "23d3f87f-70cf-4f1d-8ab5-f878996f8f3a",
+      "prompt": "Ishga qo'yuvchi nimaga javob beradi?   ",
+      "option_text": "ko'rilgan xavfsiz¬lik choralarining to'g'riligi va etarliligiga, ularning naryadda ko'rsatilgan choralarga, ish joyi va ish xarakteriga muvofiqligiga, ishga qo'yishning to'g'riligiga, shuningdek berilayotgan yo'riqnomaning sifa-ti va to'laligiga javob beradi."
     }
   },
   "theories": {

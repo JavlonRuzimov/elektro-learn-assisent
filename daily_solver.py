@@ -7,10 +7,26 @@ from agent.solver import SmartSolver
 from autopilot import VERIFIED_ANSWERS
 
 class DailyPlanSolver:
-    def __init__(self):
-        self.client = ElektroLearnClient()
-        self.kb = KnowledgeBase()
-        self.library = LibraryKnowledge()
+    def __init__(
+        self,
+        client: Optional[ElektroLearnClient] = None,
+        token: Optional[str] = None,
+        kb: Optional[KnowledgeBase] = None,
+        library: Optional[LibraryKnowledge] = None,
+        username: Optional[str] = None,
+        password: Optional[str] = None
+    ):
+        if client:
+            self.client = client
+        elif token:
+            self.client = ElektroLearnClient(token=token)
+        else:
+            self.client = ElektroLearnClient()
+
+        self.username = username
+        self.password = password
+        self.kb = kb or KnowledgeBase()
+        self.library = library or LibraryKnowledge()
         self.solver = SmartSolver(kb=self.kb, library=self.library)
 
     def get_profile_info(self) -> Dict[str, Any]:
@@ -58,7 +74,8 @@ class DailyPlanSolver:
             from auth_manager import AuthManager
             tok = self.client.base_client.token
             if AuthManager.is_token_expired(tok, buffer_seconds=300):
-                new_tok = AuthManager.login()
+                save_env = (self.username is None)
+                new_tok = AuthManager.login(username=self.username, password=self.password, save_to_env=save_env)
                 self.client.set_token(new_tok)
         except Exception:
             pass

@@ -81,7 +81,7 @@ class AuthManager:
         Config.DEFAULT_TOKEN = new_token
 
     @classmethod
-    def login(cls, username: Optional[str] = None, password: Optional[str] = None) -> str:
+    def login(cls, username: Optional[str] = None, password: Optional[str] = None, save_to_env: bool = True) -> str:
         """Energo ID OAuth orqali to'liq avtomatik kirish va yangi token olish"""
         u, p = cls.get_credentials()
         username = username or u
@@ -155,8 +155,9 @@ class AuthManager:
         if not new_token:
             raise RuntimeError(f"Yangi accessToken topilmadi: {token_data}")
 
-        # .env va xotirani yangilash
-        cls.update_env_file(new_token)
+        # .env va xotirani yangilash (faqat asosiy admin foydalanuvchi bo'lsa)
+        if save_to_env:
+            cls.update_env_file(new_token)
         return new_token
 
     @classmethod
